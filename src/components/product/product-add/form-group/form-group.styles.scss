@@ -1,0 +1,19 @@
+.product_form {
+  max-width: 280px;
+  padding-bottom: 60px;
+
+  .attributs-label {
+    margin-bottom: 10px;
+  }
+
+  .button-submit {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .product_form {
+    min-width: 100%;
+    padding: 0px 25px;
+  }
+}
