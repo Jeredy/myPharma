@@ -3,7 +3,7 @@ import axios from "../../../api/api";
 import { PRODUCTS } from "../../../data/productsData";
 import ProductItem from "../product-item/product-item.component";
 
-import { Container } from "./directory.styles";
+import { Container, TitleContainer, Item } from "./directory.styles";
 
 const Directory = ({ checkboxDeleteList }) => {
   const [products, setProducts] = React.useState([]);
@@ -30,6 +30,12 @@ const Directory = ({ checkboxDeleteList }) => {
 
   return (
     <Container>
+      <TitleContainer>
+        <Item>Produto</Item>
+        <Item>Categoria</Item>
+        <Item>Marca</Item>
+        <Item>Opções</Item>
+      </TitleContainer>
       {products.map((productItem) => (
         <ProductItem
           key={productItem.id}

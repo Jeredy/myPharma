@@ -1,25 +1,57 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import CustomButton from "../../../custom-button/custom-button.component";
+import { Button } from "../../../button/button.styles";
 
-import "./header-add.styles.scss";
+// import axios from "../../../../api/api";
 
-const HeaderAdd = ({ handleSubmit }) => {
+import { Container, Title, ButtonContainer } from "./header-add.styles.js";
+
+const HeaderPreview = ({ idList, handleSubmit }) => {
   const navigate = useNavigate();
 
+  /**
+   * Delete product from database
+   * @param {array} checkboxId
+   * @return boolean
+   */
+  const deleteProduct = async (checkboxId) => {
+    // const idDelete = { id: checkboxId };
+    // try {
+    //   await axios
+    //     .post("/deleteProduct", JSON.stringify(idDelete))
+    //     .then(() => window.location.reload());
+    // } catch (error) {
+    //   console.log({ error });
+    // }
+    // return true;
+  };
+
   return (
-    <div className="header-container">
-      <div className="title">Product Add</div>
-      <div className="buttons-container">
-        <CustomButton id="add-product-btn" onClick={handleSubmit}>
-          Save
-        </CustomButton>
-        <CustomButton id="delete-product-btn" onClick={() => navigate("/")}>
-          Cancel
-        </CustomButton>
-      </div>
-    </div>
+    <Container>
+      <Title>Novo Produto</Title>
+      <ButtonContainer>
+        <Button
+          border="1px solid #282828"
+          color="#282828"
+          colorFont="#fff"
+          id="add-product-btn"
+          onClick={handleSubmit}
+        >
+          SALVAR
+        </Button>
+        <Button
+          border="1px solid #282828"
+          color="#fff"
+          colorFont="#282828"
+          id="add-product-btn"
+          id="delete-product-btn"
+          onClick={() => deleteProduct(idList)}
+        >
+          CANCELAR
+        </Button>
+      </ButtonContainer>
+    </Container>
   );
 };
 
-export default HeaderAdd;
+export default HeaderPreview;

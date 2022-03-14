@@ -37,7 +37,7 @@ const HeaderPreview = ({ idList }) => {
           id="add-product-btn"
           onClick={() => navigate("/add-product")}
         >
-          ADD
+          ADICIONAR
         </Button>
         <Button
           border="1px solid #282828"
@@ -47,7 +47,7 @@ const HeaderPreview = ({ idList }) => {
           id="delete-product-btn"
           onClick={() => deleteProduct(idList)}
         >
-          MASS DELETE
+          DELETAR
         </Button>
       </ButtonContainer>
     </Container>

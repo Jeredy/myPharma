@@ -38,7 +38,7 @@ export const Product = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  width: 95%;
+  width: 100%;
 `;
 
 export const Item = styled.p`

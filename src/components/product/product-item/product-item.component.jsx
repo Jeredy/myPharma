@@ -26,10 +26,12 @@ const ProductItem = ({
         <Item>{name}</Item>
         <Item>{category}</Item>
         <Item>{brand}</Item>
-        <Button color="green">Edit</Button>
-        <Button color="#fff" colorFont="#f31" border="1px solid #f31">
-          Delete
-        </Button>
+        <Item>
+          <Button color="green">Edit</Button>
+          <Button color="#fff" colorFont="#f31" border="1px solid #f31">
+            Delete
+          </Button>
+        </Item>
       </Product>
     </Container>
   );
