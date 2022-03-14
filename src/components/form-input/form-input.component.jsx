@@ -25,12 +25,7 @@ const FormInput = ({
     <Label>{label}</Label>
     <Input
       className={`${!!error ? "error-input" : ""}`}
-      onChange={(event) =>
-        handleChange(
-          event.target.name
-          // mask(event.target.name, event.target.value)
-        )
-      }
+      onChange={handleChange}
       {...otherProps}
     />
     {error && <ErrorLabel>{`*${errorMessage}`}</ErrorLabel>}

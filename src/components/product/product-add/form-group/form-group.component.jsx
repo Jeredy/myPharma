@@ -3,6 +3,7 @@ import { Formik } from "formik";
 
 import FormInput from "../../../form-input/form-input.component";
 import FormSelect from "../../../form-select/form-select.component";
+import { BRAND } from "../../../../data/brandData";
 
 import {
   Container,
@@ -22,6 +23,12 @@ const Basic = () => (
         if (!values.description) {
           errors.description = "Required";
         }
+        if (!values.categories) {
+          errors.categories = "Required";
+        }
+        if (!values.brands) {
+          errors.brands = "Required";
+        }
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
@@ -34,7 +41,6 @@ const Basic = () => (
       {({
         values,
         errors,
-        touched,
         handleChange,
         handleBlur,
         handleSubmit,
@@ -46,40 +52,46 @@ const Basic = () => (
             <FormInput
               type="name"
               name="name"
-              onChange={handleChange}
+              handleChange={handleChange}
               onBlur={handleBlur}
               value={values.name}
               error={errors.name}
               errorMessage={errors.name}
-              label="Name"
+              label="Nome"
             />
             <FormInput
               type="description"
               name="description"
-              onChange={handleChange}
+              handleChange={handleChange}
               onBlur={handleBlur}
               value={values.description}
               error={errors.description}
               errorMessage={errors.description}
-              label="Description"
+              label="Descrição"
             />
           </FormSubContainer>
           <FormSubContainer>
-            <FormSelect name="categories" id="categories" label="Categoria">
-              <option value="">Categoria</option>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </FormSelect>
+            <FormSelect
+              name="brands"
+              id="brands"
+              label="Marca"
+              options={BRAND}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.brands}
+              errorMessage={errors.brands}
+            />
 
-            <FormSelect name="brands" id="brands" label="Brands">
-              <option value="">Categoria</option>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </FormSelect>
+            <FormSelect
+              name="categories"
+              id="categories"
+              label="Categorias"
+              options={BRAND}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.categories}
+              errorMessage={errors.categories}
+            />
           </FormSubContainer>
           <button
             id="button-submit"

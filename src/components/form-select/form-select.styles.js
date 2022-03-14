@@ -22,6 +22,8 @@ export const Label = styled.label`
   font-weight: normal;
 `;
 
+export const Option = styled.option``;
+
 export const Select = styled.select`
   width: 350px;
   background: none;

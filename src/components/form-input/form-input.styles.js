@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/macro";
+import styled from "styled-components";
 
 const mainColor = "black";
 const subColor = "gray";
@@ -10,7 +10,6 @@ export const Container = styled.div`
   .error-input {
     border: 1px solid rgb(242, 68, 37);
   }
-
 `;
 
 export const ErrorLabel = styled.div`

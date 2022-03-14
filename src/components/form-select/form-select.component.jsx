@@ -2,7 +2,7 @@ import React from "react";
 
 // import mask from "../mask";
 
-import { Container, Select, Label } from "./form-select.styles";
+import { Container, Select, Label, Option } from "./form-select.styles";
 
 /**
  * Custom input form that can validate onChange with a mask
@@ -19,15 +19,22 @@ const FormSelect = ({
   label,
   error = false,
   errorMessage = "",
-  children,
+  name,
+  options,
 }) => (
   <Container>
     <Label>{label}</Label>
     <Select
+      as="select"
+      name={name}
       className={`${!!error ? "error-input" : ""}`}
-      onChange={(event) => handleChange(event.target.name)}
+      onChange={handleChange}
     >
-      {children}
+      {options.map(({ name }, index) => (
+        <Option key={index} value={name.toLowerCase()}>
+          {name}
+        </Option>
+      ))}
     </Select>
     {error && <div className="error-label">{`*${errorMessage}`}</div>}
   </Container>
