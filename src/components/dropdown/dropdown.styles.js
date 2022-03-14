@@ -16,12 +16,20 @@ export const DropdownContainer = styled.div`
 `;
 
 export const IconContainer = styled.div`
-  position: flex;
+  display: flex;
+  align-items: center;
   height: 50px;
   font-size: 2rem;
   cursor: poiter;
   outline: none;
   padding-left: 1rem;
+`;
+
+export const Title = styled.span`
+  color: #282828;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.17);
+  opacity: ${({ isOpen }) => (isOpen ? "0" : "1")};
+  display: ${({ isOpen }) => (isOpen ? "none" : "flex")};
 `;
 
 export const Icon = styled.span`
@@ -33,9 +41,13 @@ export const Icon = styled.span`
 
 export const CloseIcon = styled(FaBars)`
   fill: #18171c;
-  display: block;
+  display: flex;
   cursor: pointer;
-  transform: translateY(55%);
+  margin-right: 0.5rem;
+
+  // @media screen and (max-width: 800px) {
+  //   display: block;
+  // }
 `;
 
 export const DropdownWrapper = styled.div`

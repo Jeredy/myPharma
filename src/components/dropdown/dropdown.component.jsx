@@ -11,6 +11,7 @@ import {
   DropdownWrapper,
   IconContainer,
   Icon,
+  Title
 } from "./dropdown.styles";
 
 function Dropdown({ isOpen, toggle }) {
@@ -25,6 +26,7 @@ function Dropdown({ isOpen, toggle }) {
       <DropdownWrapper isOpen={isOpen}>
         <IconContainer onClick={toggle}>
           <CloseIcon />
+          <Title isOpen={isOpen}>MyPharma  </Title>
         </IconContainer>
         <DropdownMenu>
           {menuData.map((item, index) => (

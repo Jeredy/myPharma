@@ -8,7 +8,7 @@ import GlobalStyle from "./globalStyles";
 // import Footer from "./components/footer/footer.component";
 // import ProductAddPage from "./page/product/product-add/product-add.component";
 
-import { Container } from "./App.styles.js";
+import { Container, SubContainer } from "./App.styles.js";
 import Dropdown from "./components/dropdown/dropdown.component";
 
 function App() {
@@ -21,12 +21,14 @@ function App() {
   return (
     <Container>
       <GlobalStyle />
-      {/* <Header toggle={toggle} /> */}
       <Dropdown isOpen={isOpen} toggle={toggle} />
-      <Routes>
-        <Route path="/" element={<ProductPreview />} />
-        {/* <Route path="/add-product" element={<ProductAddPage />} /> */}
-      </Routes>
+      <SubContainer>
+        <Header toggle={toggle} />
+        <Routes>
+          <Route path="/" element={<ProductPreview />} />
+          {/* <Route path="/add-product" element={<ProductAddPage />} /> */}
+        </Routes>
+      </SubContainer>
       {/* <Footer /> */}
     </Container>
   );

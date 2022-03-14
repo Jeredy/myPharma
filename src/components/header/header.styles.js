@@ -1,17 +1,17 @@
 import styled, { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
-import { SiArlo } from "react-icons/si";
 
-export const Nav = styled.nav`
-  height: 55px;
+export const Nav = styled.div`
   display: flex;
+  height: 70px;
   justify-content: space-between;
   padding: 1rem 2rem;
-  z-index: 100;
-  position: fixed;
+  padding-right: 3rem;
   width: 100%;
-  background: red;
-
+  background: #fff;
+  -moz-box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.4);
   transition: all 0.5s ease;
 
   &.active {
@@ -45,21 +45,12 @@ const NavLink = css`
   }
 `;
 
-export const LogoIcon = styled(SiArlo)`
-  font-size: 2rem;
-  fill: white;
-  margin-right: 0.5rem;
-  transition: all 0.5s ease;
+export const Title = styled.h1`
+  color: #383838;
+  font-size: 1.7rem;
+  font-weight: 600;
 
-  &.active {
-    fill: #18171c;
-  }
-`;
-
-export const Logo = styled(Link)`
-  ${NavLink}
-  margin-left: -1rem;
-  font-style: italic;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 `;
 
 export const NavMenu = styled.div`
