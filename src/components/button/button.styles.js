@@ -9,7 +9,6 @@ export const Button = styled.div`
   min-width: 70px;
   height: 35px;
   max-width: 180px;
-  cursor: pointer;
   text-decoration: none;
   transition: 0.3s;
   display: flex;
@@ -25,7 +24,8 @@ export const Button = styled.div`
 
   &:hover {
     background: ${({ border, colorFont }) => (border ? colorFont : "#fff")};
-    border: ${({ border, color }) => (!border && `1px solid ${color}`)};
+    border: ${({ border, color }) => !border && `1px solid ${color}`};
     color: ${({ colorFont, color }) => (color ? color : colorFont)};
+    cursor: pointer;
   }
 `;

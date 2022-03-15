@@ -45,7 +45,7 @@ const HeaderPreview = ({ idList, handleSubmit }) => {
           colorFont="#282828"
           id="add-product-btn"
           id="delete-product-btn"
-          onClick={() => navigate("/product")}
+          onClick={() => navigate(-1)}
         >
           CANCELAR
         </Button>

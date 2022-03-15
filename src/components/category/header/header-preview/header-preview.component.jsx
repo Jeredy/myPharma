@@ -28,14 +28,14 @@ const HeaderPreview = ({ idList }) => {
 
   return (
     <Container>
-      <Title>Produtos - Lista</Title>
+      <Title>Categorias Lista</Title>
       <ButtonContainer>
         <Button
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
           id="add-product-btn"
-          onClick={() => navigate("add-product")}
+          onClick={() => navigate("add-category")}
         >
           ADICIONAR
         </Button>

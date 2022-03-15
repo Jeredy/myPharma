@@ -25,6 +25,4 @@ export const FormContainer = styled.form`
   width: 100%;
   align-items: center;  
   max-width: 1000px;
-  justify-content: space-around;
-
 `;

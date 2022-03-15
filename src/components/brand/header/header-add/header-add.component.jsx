@@ -4,9 +4,9 @@ import { Button } from "../../../button/button.styles";
 
 // import axios from "../../../../api/api";
 
-import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
+import { Container, Title, ButtonContainer } from "./header-add.styles.js";
 
-const HeaderPreview = ({ idList }) => {
+const HeaderPreview = ({ idList, handleSubmit }) => {
   const navigate = useNavigate();
 
   /**
@@ -28,16 +28,16 @@ const HeaderPreview = ({ idList }) => {
 
   return (
     <Container>
-      <Title>Produtos - Lista</Title>
+      <Title>Nova Marca</Title>
       <ButtonContainer>
         <Button
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
           id="add-product-btn"
-          onClick={() => navigate("add-product")}
+          onClick={handleSubmit}
         >
-          ADICIONAR
+          SALVAR
         </Button>
         <Button
           border="1px solid #282828"
@@ -45,9 +45,9 @@ const HeaderPreview = ({ idList }) => {
           colorFont="#282828"
           id="add-product-btn"
           id="delete-product-btn"
-          onClick={() => deleteProduct(idList)}
+          onClick={() => navigate(-1)}
         >
-          DELETAR
+          CANCELAR
         </Button>
       </ButtonContainer>
     </Container>
