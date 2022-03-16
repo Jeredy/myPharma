@@ -25,7 +25,6 @@ const HeaderPreview = ({ handleSubmit, update }) => {
           color="#fff"
           colorFont="#282828"
           id="add-category-btn"
-          id="delete-category-btn"
           onClick={() => navigate(-1)}
         >
           CANCELAR

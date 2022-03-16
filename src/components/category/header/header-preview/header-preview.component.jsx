@@ -17,7 +17,7 @@ const HeaderPreview = ({ idList }) => {
   const deleteProduct = async (idList) => {
     try {
       await axios
-        .delete("/product/delete", {
+        .delete("/category/delete", {
           data: {
             idList: JSON.stringify(idList),
           },
@@ -31,7 +31,7 @@ const HeaderPreview = ({ idList }) => {
 
   return (
     <Container>
-      <Title>Categorias Lista</Title>
+      <Title>Categorias - Lista</Title>
       <ButtonContainer>
         <Button
           border="1px solid #282828"

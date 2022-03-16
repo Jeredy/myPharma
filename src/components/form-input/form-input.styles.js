@@ -5,8 +5,8 @@ const subColor = "gray";
 
 export const Container = styled.div`
   position: relative;
-  margin: 20px 0px;
-
+  margin: .8rem 0rem;
+  height: 4rem;
   .error-input {
     border: 1px solid rgb(242, 68, 37);
   }
@@ -24,12 +24,12 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  height: 4rem;
   width: 350px;
   background: none;
   background-color: #fff;
   color: ${subColor};
   font-size: 18px;
-  padding: 10px 10px 10px 5px;
   display: block;
   border: none;
   border-radius: 0;

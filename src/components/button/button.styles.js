@@ -8,7 +8,7 @@ export const Button = styled.div`
   margin: 0.2rem;
   min-width: 70px;
   height: 35px;
-  max-width: 180px;
+  width: ${({ fullscreen }) => (!!fullscreen ? "100%" : "auto")};
   text-decoration: none;
   transition: 0.3s;
   display: flex;
