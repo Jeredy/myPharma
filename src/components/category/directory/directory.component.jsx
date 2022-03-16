@@ -12,16 +12,14 @@ const Directory = ({ checkboxDeleteList }) => {
    * Get products from data base and set it in a variable.
    */
   const getProducts = async () => {
-    // try {
-    //   await axios.get("/").then((res) => {
-    //     const data = res.data;
-    //     setProducts(data);
-    //   });
-    // } catch (e) {
-    //   console.log("error: ", e);
-    // }
-
-    setProducts(CATEGORY);
+    try {
+      await axios.get("/category").then((res) => {
+        const data = res.data;
+        setProducts(data);
+      });
+    } catch (e) {
+      console.log("error: ", e);
+    }
   };
 
   React.useEffect(() => {
@@ -37,7 +35,7 @@ const Directory = ({ checkboxDeleteList }) => {
       </TitleContainer>
       {products.map((categoryItem) => (
         <ProductItem
-          key={categoryItem.id}
+          key={categoryItem._id}
           categoryItem={categoryItem}
           checkboxDeleteList={checkboxDeleteList}
         />

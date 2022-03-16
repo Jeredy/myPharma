@@ -21,6 +21,7 @@ const FormSelect = ({
   errorMessage = "",
   name,
   options,
+  selected,
 }) => (
   <Container>
     <Label>{label}</Label>
@@ -31,7 +32,11 @@ const FormSelect = ({
       onChange={handleChange}
     >
       {options.map(({ name }, index) => (
-        <Option key={index} value={name.toLowerCase()}>
+        <Option
+          selected={selected === name.toLowerCase()}
+          key={index}
+          value={name.toLowerCase()}
+        >
           {name}
         </Option>
       ))}

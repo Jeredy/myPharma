@@ -34,7 +34,7 @@ const HeaderPreview = ({ idList, handleSubmit }) => {
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
-          id="add-product-btn"
+          id="add-category-btn"
           onClick={handleSubmit}
         >
           SALVAR
@@ -43,7 +43,7 @@ const HeaderPreview = ({ idList, handleSubmit }) => {
           border="1px solid #282828"
           color="#fff"
           colorFont="#282828"
-          id="add-product-btn"
+          id="add-category-btn"
           id="delete-product-btn"
           onClick={() => navigate(-1)}
         >

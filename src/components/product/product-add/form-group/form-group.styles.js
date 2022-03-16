@@ -23,8 +23,14 @@ export const FormContainer = styled.form`
   display: flex;
   height: 100%;
   width: 100%;
-  align-items: center;  
+  align-items: center;
   max-width: 1000px;
   justify-content: space-around;
+`;
 
+export const FormSubContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

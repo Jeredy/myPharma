@@ -40,3 +40,4 @@ export const Item = styled.p`
   inline-size: 130px;
   overflow-wrap: break-word;
 `;
+

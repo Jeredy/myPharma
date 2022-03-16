@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   position: relative;
@@ -19,6 +20,11 @@ export const Container = styled.div`
     margin: 10px 15px;
   }
 `;
+
+export const ButtonLink = styled(Link)`
+  text-decoration: none;
+`;
+
 export const Checkbox = styled.div`
   position: absolute;
   top: 18px;

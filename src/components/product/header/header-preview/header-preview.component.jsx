@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../button/button.styles";
 
-// import axios from "../../../../api/api";
+import axios from "../../../../api/api";
 
 import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
 
@@ -14,16 +14,20 @@ const HeaderPreview = ({ idList }) => {
    * @param {array} checkboxId
    * @return boolean
    */
-  const deleteProduct = async (checkboxId) => {
-    // const idDelete = { id: checkboxId };
-    // try {
-    //   await axios
-    //     .post("/deleteProduct", JSON.stringify(idDelete))
-    //     .then(() => window.location.reload());
-    // } catch (error) {
-    //   console.log({ error });
-    // }
-    // return true;
+  const deleteProduct = async (idList) => {
+
+    try {
+      await axios
+        .delete("/product/delete", {
+          data: {
+            idList: JSON.stringify(idList),
+          },
+        })
+        .then(() => window.location.reload());
+    } catch (error) {
+      console.log({ error });
+    }
+    return true;
   };
 
   return (

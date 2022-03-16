@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../button/button.styles";
 
-// import axios from "../../../../api/api";
+import { Button } from "../../../button/button.styles";
+import axios from "../../../../api/api";
 
 import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
 
@@ -14,16 +14,19 @@ const HeaderPreview = ({ idList }) => {
    * @param {array} checkboxId
    * @return boolean
    */
-  const deleteProduct = async (checkboxId) => {
-    // const idDelete = { id: checkboxId };
-    // try {
-    //   await axios
-    //     .post("/deleteProduct", JSON.stringify(idDelete))
-    //     .then(() => window.location.reload());
-    // } catch (error) {
-    //   console.log({ error });
-    // }
-    // return true;
+  const deleteProduct = async (idList) => {
+    try {
+      await axios
+        .delete("/product/delete", {
+          data: {
+            idList: JSON.stringify(idList),
+          },
+        })
+        .then(() => window.location.reload());
+    } catch (error) {
+      console.log({ error });
+    }
+    return true;
   };
 
   return (
@@ -34,7 +37,7 @@ const HeaderPreview = ({ idList }) => {
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
-          id="add-product-btn"
+          id="add-category-btn"
           onClick={() => navigate("add-category")}
         >
           ADICIONAR
@@ -43,8 +46,8 @@ const HeaderPreview = ({ idList }) => {
           border="1px solid #282828"
           color="#fff"
           colorFont="#282828"
-          id="add-product-btn"
-          id="delete-product-btn"
+          id="add-category-btn"
+          id="delete-category-btn"
           onClick={() => deleteProduct(idList)}
         >
           DELETAR
