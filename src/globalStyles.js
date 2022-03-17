@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
     html, body {
         overflow-x: hidden;
         background: rgba(143, 138, 166, 0.1);
+        height: 100%;
+
     }
 `;
 

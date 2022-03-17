@@ -7,9 +7,17 @@ const INITIAL_STATE = {
 const categoriesResources = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CategoryActionsTypes.SET_CATEGORIES:
+      const settingCategories = action.payload;
+      
+      settingCategories.unshift({
+        _id: "select",
+        name: "Selecionar..",
+        description: "select",
+      });
+      
       return {
         ...state,
-        categories: action.payload,
+        categories: settingCategories,
       };
     case CategoryActionsTypes.ADD_CATEGORY:
       return {
@@ -36,7 +44,6 @@ const categoriesResources = (state = INITIAL_STATE, action) => {
       const newCategoryList = state.categories.filter(
         ({ _id }) => !deleteList.includes(_id)
       );
-        console.log(newCategoryList)
       return {
         ...state,
         categories: newCategoryList,

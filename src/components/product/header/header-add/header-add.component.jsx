@@ -15,7 +15,6 @@ const HeaderPreview = ({ handleSubmit, update }) => {
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
-          id="add-product-btn"
           onClick={handleSubmit}
         >
           SALVAR
@@ -24,8 +23,6 @@ const HeaderPreview = ({ handleSubmit, update }) => {
           border="1px solid #282828"
           color="#fff"
           colorFont="#282828"
-          id="add-product-btn"
-          id="delete-product-btn"
           onClick={() => navigate(-1)}
         >
           CANCELAR

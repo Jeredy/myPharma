@@ -1,41 +1,22 @@
 import React from "react";
-import axios from "../../../api/api";
-import { BRAND } from "../../../data/brandData";
+import { connect } from "react-redux";
+
 import ProductItem from "../brand-item/brand-item.component";
 
 import { Container, TitleContainer, Item } from "./directory.styles";
 
-const Directory = ({ checkboxDeleteList }) => {
-  const [brands, setBrands] = React.useState([]);
-
-  /**
-   * Get brands from data base and set it in a variable.
-   */
-  const getProducts = async () => {
-    try {
-      await axios.get("/brand").then((res) => {
-        const data = res.data;
-        setBrands(data);
-      });
-    } catch (e) {
-      console.log("error: ", e);
-    }
-  };
-
-  React.useEffect(() => {
-    getProducts();
-  }, []);
-
+const BrandDirectory = ({ checkboxDeleteList, brands }) => {
+  console.log(brands)
   return (
     <Container>
       <TitleContainer>
         <Item>Marca</Item>
         <Item>Opções</Item>
       </TitleContainer>
-      {brands.map((categoryItem) => (
+      {brands?.map((brandItem) => (
         <ProductItem
-          key={categoryItem._id}
-          categoryItem={categoryItem}
+          key={brandItem._id}
+          brandItem={brandItem}
           checkboxDeleteList={checkboxDeleteList}
         />
       ))}
@@ -43,4 +24,8 @@ const Directory = ({ checkboxDeleteList }) => {
   );
 };
 
-export default Directory;
+const mapStateToProps = (state) => ({
+  brands: state.brand.brands,
+});
+
+export default connect(mapStateToProps)(BrandDirectory);

@@ -24,6 +24,7 @@ const FormSelect = ({
   selected,
 }) => (
   <Container>
+    {console.log(options)}
     <Label>{label}</Label>
     <Select
       as="select"

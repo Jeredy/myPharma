@@ -29,7 +29,7 @@ function Dropdown({ setCurrentAdmin, isOpen, toggle }) {
 
   const logout = () => {
     setCurrentAdmin();
-    navigation('/')
+    navigation("/");
   };
 
   return (
@@ -46,6 +46,7 @@ function Dropdown({ setCurrentAdmin, isOpen, toggle }) {
               key={index}
               onClick={() => toggleSelect(index)}
               className={selected === index && "active"}
+              isOpen={isOpen}
             >
               <Icon>{item.icon}</Icon>
               <DropdownName isOpen={isOpen}>
@@ -54,7 +55,7 @@ function Dropdown({ setCurrentAdmin, isOpen, toggle }) {
             </DropdownLink>
           ))}
         </DropdownMenu>
-        <BtnWrap onClick={logout}>
+        <BtnWrap isOpen={isOpen} onClick={logout}>
           <Icon>
             <BiLogOut fill={"#18171c"} />
           </Icon>

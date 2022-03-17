@@ -1,25 +1,37 @@
 import React from "react";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
 import FormInput from "../../../form-input/form-input.component";
 import axios from "../../../../api/api";
+import {
+  addBrand,
+  updateBrand,
+} from "../../../../redux/brands/brand.actions";
+
 
 import { Container, FormContainer } from "./form-group.styles";
 
-const Basic = ({ state }) => {
+const BrandFormGroup = ({ state, addBrand, updateBrand }) => {
   const { _id, name } = state ?? "";
 
   const navigate = useNavigate();
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
       if (!!state) {
         values._id = _id;
-        return axios.put("/brand/update", values);
+        
+        await axios.put("/brand/update", values);
+        updateBrand(values);
+        return navigate('/brand');
       }
 
-      axios.post("/brand/store", values);
+      await axios.post("/brand/store", values);
+      addBrand(values);
+
+      navigate('/brand');
     } catch (err) {
       console.log(err);
     }
@@ -77,4 +89,9 @@ const Basic = ({ state }) => {
   );
 };
 
-export default Basic;
+const mapDispatchToProps = (dispatch) => ({
+  addBrand: (brand) => dispatch(addBrand(brand)),
+  updateBrand: (brand) => dispatch(updateBrand(brand)),
+});
+
+export default connect(null, mapDispatchToProps)(BrandFormGroup);

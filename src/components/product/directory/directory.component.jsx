@@ -24,6 +24,7 @@ const ProductDirectory = ({ checkboxDeleteList, products }) => {
     </Container>
   );
 };
+
 const mapStateToProps = (state) => ({
   products: state.product.products,
 });

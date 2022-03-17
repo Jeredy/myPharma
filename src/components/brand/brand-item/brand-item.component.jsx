@@ -1,4 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import axios from "../../../api/api";
+import { deleteBrands } from "../../../redux/brands/brand.actions";
+
+import { Button } from "../../button/button.styles";
+
 import {
   Container,
   Checkbox,
@@ -6,11 +13,8 @@ import {
   Item,
   ButtonLink,
 } from "./brand-item.styles.js";
-import axios from "../../../api/api";
 
-import { Button } from "../../button/button.styles";
-
-const ProductItem = ({ categoryItem: { _id, name }, checkboxDeleteList }) => {
+const BrandItem = ({ brandItem: { _id, name }, checkboxDeleteList, deleteBrands}) => {
   const [checkbox, setCheckbox] = React.useState(false);
 
   const toggleCheckbox = () => {
@@ -18,19 +22,18 @@ const ProductItem = ({ categoryItem: { _id, name }, checkboxDeleteList }) => {
   };
 
   /**
-   * Delete product from database
-   * @param {array} checkboxId
+   * Delete brand from database and redux store
+   * @param {array} id
    * @return boolean
    */
-  const deleteProduct = async (id) => {
+   const deleteBrandApi = async (id) => {
     try {
-      await axios
-        .delete("/brand/delete", {
-          data: {
-            idList: JSON.stringify(id),
-          },
-        })
-        .then(() => window.location.reload());
+      await axios.delete("/brand/delete", {
+        data: {
+          idList: JSON.stringify(id),
+        },
+      });
+      deleteBrands(id);
     } catch (error) {
       console.log({ error });
     }
@@ -63,7 +66,7 @@ const ProductItem = ({ categoryItem: { _id, name }, checkboxDeleteList }) => {
             color="#fff"
             colorFont="#f31"
             border="1px solid #f31"
-            onClick={() => deleteProduct(_id)} 
+            onClick={() => deleteBrandApi(_id)} 
           >
             Delete
           </Button>
@@ -73,4 +76,8 @@ const ProductItem = ({ categoryItem: { _id, name }, checkboxDeleteList }) => {
   );
 };
 
-export default ProductItem;
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteBrands: (deleteList) => dispatch(deleteBrands(deleteList)),
+});
+export default connect(null, mapDispatchToProps)(BrandItem);

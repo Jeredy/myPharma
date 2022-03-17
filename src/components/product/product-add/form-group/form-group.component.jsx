@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 
 import FormInput from "../../../form-input/form-input.component";
 import FormSelect from "../../../form-select/form-select.component";
-import { BRAND } from "../../../../data/brandData";
 import axios from "../../../../api/api";
 import {
   addProduct,
@@ -18,7 +17,7 @@ import {
   FormSubContainer,
 } from "./form-group.styles";
 
-const Basic = ({ state, addProduct, updateProduct }) => {
+const ProductFormGroup = ({ state, brands, categoriesList, addProduct, updateProduct }) => {
   const { _id, category, brand, name, description, price, inventory } =
     state ?? "";
 
@@ -31,7 +30,7 @@ const Basic = ({ state, addProduct, updateProduct }) => {
     try {
       if (!!state) {
         values._id = _id;
-        
+
         await axios.put("/product/update", values);
         updateProduct(values);
         return navigate(-1);
@@ -68,7 +67,13 @@ const Basic = ({ state, addProduct, updateProduct }) => {
           if (!values.category) {
             errors.category = "Required";
           }
+          if (values.category === 'Selecionar..') {
+            errors.category = "Required";
+          }
           if (!values.brand) {
+            errors.brand = "Required";
+          }
+          if (values.brand === 'Selecionar..') {
             errors.brand = "Required";
           }
           if (!values.price) {
@@ -137,7 +142,7 @@ const Basic = ({ state, addProduct, updateProduct }) => {
                 name="brand"
                 id="brand"
                 label="Marca"
-                options={BRAND}
+                options={brands}
                 selected={brand}
                 handleChange={handleChange}
                 onBlur={handleBlur}
@@ -149,7 +154,7 @@ const Basic = ({ state, addProduct, updateProduct }) => {
                 name="category"
                 id="category"
                 label="Categorias"
-                options={BRAND}
+                options={categoriesList}
                 selected={category}
                 handleChange={handleChange}
                 onBlur={handleBlur}
@@ -180,9 +185,14 @@ const Basic = ({ state, addProduct, updateProduct }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  brands: state.brand.brands,
+  categoriesList: state.category.categories,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   addProduct: (product) => dispatch(addProduct(product)),
   updateProduct: (product) => dispatch(updateProduct(product)),
 });
 
-export default connect(null, mapDispatchToProps)(Basic);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductFormGroup);

@@ -18,15 +18,15 @@ const LinkContainer = css`
 `;
 
 export const DropdownContainer = styled.div`
-  width: ${({ isOpen }) => (isOpen ? "60px" : "180px")};
-  height: 100vh;
+  width: ${({ isOpen }) => (isOpen ? "72px" : "180px")};
   background: #fff;
   display: grid;
   align-items: flex-start;
-  transition: 0.4s ease-in-out;
+  transition .2s ease-in-out;
   -moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  min-height: 100vh;
   jussify-content: center;
 `;
 
@@ -66,10 +66,10 @@ export const CloseIcon = styled(FaBars)`
 `;
 
 export const DropdownWrapper = styled.div`
+  position: fixed;
   display: flex;
-  width: ${({ isOpen }) => (isOpen ? "60px" : "180px")};
+  max-width: ${({ isOpen }) => (isOpen ? "60px" : "180px")};
   height: 100%;
-  max-height: 100vh;
   flex-direction: column;
 `;
 
@@ -78,10 +78,12 @@ export const DropdownMenu = styled.div`
   flex-direction: column;
   text-align: center;
   margin-bottom: 1rem;
+  max-width: ${({ isOpen }) => (isOpen ? "50px" : "150px")};
 `;
 
 export const DropdownLink = styled(Link)`
   ${LinkContainer}
+  width: ${({ isOpen }) => (isOpen ? "50px" : "150px")};
 
   &.active {
     background: rgba(24, 23, 28, 0.3);
@@ -108,6 +110,7 @@ export const DropdownName = styled.p`
 `;
 export const BtnWrap = styled.div`
   ${LinkContainer}
+  width: ${({ isOpen }) => (isOpen ? "50px" : "150px")};
 
   margin: auto 0.5rem 0.9rem 0.5rem;
   background: rgba(24, 23, 28, 0.2);

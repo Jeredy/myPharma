@@ -1,0 +1,6 @@
+export const BrandActionsTypes = {
+  SET_BRANDS: "SET_BRANDS",
+  DELETE_BRANDS: "DELETE_BRANDS",
+  ADD_BRAND: "ADD_BRAND",
+  UPDATE_BRAND: "UPDATE_BRAND",
+};

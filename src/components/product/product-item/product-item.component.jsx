@@ -23,8 +23,8 @@ const ProductItem = ({
   };
 
   /**
-   * Delete product from database
-   * @param {array} checkboxId
+   * Delete product from database and redux store
+   * @param {array} id
    * @return boolean
    */
   const deleteProductApi = async (id) => {

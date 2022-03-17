@@ -5,14 +5,14 @@ export const setCategories = (category) => ({
   payload: category,
 });
 
-export const addCategory = (product) => ({
+export const addCategory = (category) => ({
   type: CategoryActionsTypes.ADD_CATEGORY,
-  payload: product,
+  payload: category,
 });
 
-export const updateCategory = (product) => ({
+export const updateCategory = (category) => ({
   type: CategoryActionsTypes.UPDATE_CATEGORY,
-  payload: product,
+  payload: category,
 });
 
 export const deleteCategories = (category) => ({
