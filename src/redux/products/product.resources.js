@@ -2,6 +2,8 @@ import { ProductActionsTypes } from "./product.types";
 
 const INITIAL_STATE = {
   products: null,
+  pageNumber: 0,
+  totalPageNumbers: 0,
 };
 
 const productsResources = (state = INITIAL_STATE, action) => {
@@ -39,6 +41,16 @@ const productsResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         products: newProductsList,
+      };
+    case ProductActionsTypes.SET_PRODUCTS_TOTAL_PAGES:
+      return {
+        ...state,
+        totalPageNumbers: action.payload,
+      };
+    case ProductActionsTypes.SET_PRODUCTS_PAGE:
+      return {
+        ...state,
+        pageNumber: action.payload,
       };
     default:
       return state;

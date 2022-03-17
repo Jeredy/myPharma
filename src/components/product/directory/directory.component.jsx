@@ -2,10 +2,25 @@ import React from "react";
 import { connect } from "react-redux";
 
 import ProductItem from "../product-item/product-item.component";
+import { setProductsPage } from "../../../redux/products/product.actions";
 
-import { Container, TitleContainer, Item } from "./directory.styles";
+import {
+  Container,
+  TitleContainer,
+  Item,
+  Pagination,
+  Page,
+} from "./directory.styles";
 
-const ProductDirectory = ({ checkboxDeleteList, products }) => {
+const ProductDirectory = ({
+  checkboxDeleteList,
+  products,
+  totalPageNumbers,
+  setProductsPage,
+  currentPage,
+}) => {
+  const pages = new Array(totalPageNumbers).fill(null).map((x, i) => i);
+
   return (
     <Container>
       <TitleContainer>
@@ -21,12 +36,44 @@ const ProductDirectory = ({ checkboxDeleteList, products }) => {
           checkboxDeleteList={checkboxDeleteList}
         />
       ))}
+      <Pagination>
+        <Page
+          onClick={() =>
+            currentPage > 0 ? setProductsPage(currentPage - 1) : {}
+          }
+        >
+          anterior
+        </Page>
+        {pages.map((pageNumber) => (
+          <Page
+            onClick={() => setProductsPage(pageNumber)}
+            isCcurrentPage={pageNumber === currentPage}
+          >
+            {pageNumber + 1}
+          </Page>
+        ))}
+        <Page
+          onClick={() =>
+            currentPage < totalPageNumbers - 1
+              ? setProductsPage(currentPage + 1)
+              : {}
+          }
+        >
+          proximo
+        </Page>
+      </Pagination>
     </Container>
   );
 };
 
 const mapStateToProps = (state) => ({
   products: state.product.products,
+  currentPage: state.product.pageNumber,
+  totalPageNumbers: state.product.totalPageNumbers,
 });
 
-export default connect(mapStateToProps)(ProductDirectory);
+const mapDispatchToProps = (dispatch) => ({
+  setProductsPage: (currentPage) => dispatch(setProductsPage(currentPage)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDirectory);

@@ -19,3 +19,13 @@ export const deleteProducts = (products) => ({
   type: ProductActionsTypes.DELETE_PRODUCTS,
   payload: products,
 });
+
+export const setProductsTotalPages = (totalPages) => ({
+  type: ProductActionsTypes.SET_PRODUCTS_TOTAL_PAGES,
+  payload: totalPages,
+});
+
+export const setProductsPage = (currentPage) => ({
+  type: ProductActionsTypes.SET_PRODUCTS_PAGE,
+  payload: currentPage,
+});

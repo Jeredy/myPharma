@@ -9,7 +9,10 @@ import CategorytRoot from "./page/category/category-root.component";
 import BrandRoot from "./page/brand/brand-root.component";
 import SignInSignUp from "./page/signin-signup/signin-signup-root.component";
 import AuthRoute from "./page/auth-root";
-import { setProducts } from "./redux/products/product.actions";
+import {
+  setProducts,
+  setProductsTotalPages,
+} from "./redux/products/product.actions";
 import { setCategories } from "./redux/categories/category.actions";
 import { setBrands } from "./redux/brands/brand.actions";
 import axios from "./api/api";
@@ -17,7 +20,14 @@ import axios from "./api/api";
 import GlobalStyle from "./globalStyles";
 import { Container, SubContainer } from "./App.styles.js";
 
-const App = ({ currentAdmin, setProducts, setCategories, setBrands }) => {
+const App = ({
+  currentAdmin,
+  setProducts,
+  setCategories,
+  setBrands,
+  productsPageNumber,
+  setProductsTotalPages,
+}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -25,14 +35,21 @@ const App = ({ currentAdmin, setProducts, setCategories, setBrands }) => {
 
   const getProducts = async () => {
     try {
-      await axios.get("/product").then((res) => {
-        const data = res.data;
-        setProducts(data);
+      await axios.get(`/product?page=${productsPageNumber}`).then((res) => {
+        const { products, totalPages } = res.data;
+        setProductsTotalPages(totalPages);
+        setProducts(products);
       });
     } catch (e) {
       console.log("error: ", e);
     }
   };
+
+  React.useEffect(() => {
+    if (currentAdmin === null) {
+      getProducts();
+    }
+  }, [productsPageNumber]);
 
   const getCategories = async () => {
     try {
@@ -57,7 +74,6 @@ const App = ({ currentAdmin, setProducts, setCategories, setBrands }) => {
   };
 
   const setReduxData = () => {
-    getProducts();
     getCategories();
     getBrands();
   };
@@ -107,12 +123,15 @@ const App = ({ currentAdmin, setProducts, setCategories, setBrands }) => {
 
 const mapStateToProps = (state) => ({
   currentAdmin: state.admin.currentAdmin,
+  productsPageNumber: state.product.pageNumber,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setProducts: (products) => dispatch(setProducts(products)),
   setCategories: (categories) => dispatch(setCategories(categories)),
   setBrands: (brands) => dispatch(setBrands(brands)),
+  setProductsTotalPages: (productsTotalPages) =>
+    dispatch(setProductsTotalPages(productsTotalPages)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
