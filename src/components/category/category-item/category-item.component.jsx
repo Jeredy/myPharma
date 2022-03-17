@@ -1,4 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { deleteCategories } from "../../../redux/categories/category.actions";
+import { Button } from "../../button/button.styles";
+import axios from "../../../api/api";
+
 import {
   Container,
   Checkbox,
@@ -6,12 +12,11 @@ import {
   Item,
   ButtonLink,
 } from "./category-item.styles.js";
-import { Button } from "../../button/button.styles";
-import axios from "../../../api/api";
 
 const CategoryItem = ({
   categoryItem: { _id, description, name },
   checkboxDeleteList,
+  deleteCategories,
 }) => {
   const [checkbox, setCheckbox] = React.useState(false);
   const toggleCheckbox = () => {
@@ -19,19 +24,18 @@ const CategoryItem = ({
   };
 
   /**
-   * Delete product from database
-   * @param {array} checkboxId
+   * Delete product from database and from redux state
+   * @param {array} id
    * @return boolean
    */
-  const deleteCategory = async (id) => {
+  const deleteCategoryApi = async (id) => {
     try {
-      await axios
-        .delete("/category/delete", {
-          data: {
-            idList: JSON.stringify(id),
-          },
-        })
-        .then(() => window.location.reload());
+      await axios.delete("/category/delete", {
+        data: {
+          idList: JSON.stringify(id),
+        },
+      });
+      deleteCategories(id);
     } catch (error) {
       console.log({ error });
     }
@@ -66,7 +70,7 @@ const CategoryItem = ({
             color="#fff"
             colorFont="#f31"
             border="1px solid #f31"
-            onClick={() => deleteCategory(_id)} 
+            onClick={() => deleteCategoryApi(_id)}
           >
             Delete
           </Button>
@@ -76,4 +80,7 @@ const CategoryItem = ({
   );
 };
 
-export default CategoryItem;
+const mapDispatchToProps = (dispatch) => ({
+  deleteCategories: (deleteList) => dispatch(deleteCategories(deleteList)),
+});
+export default connect(null, mapDispatchToProps)(CategoryItem);

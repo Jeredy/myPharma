@@ -20,11 +20,7 @@ const productsResources = (state = INITIAL_STATE, action) => {
       const productIndex = state.products.findIndex(
         ({ _id }) => _id == action.payload._id
       );
-      console.log(action.payload._id);
-      console.log(state.products);
-      console.log(productIndex);
-
-      // if (productIndex === -1) return { ...state };
+      if (productIndex === -1) return { ...state };
 
       const updatedProductsList = state.products;
       updatedProductsList.splice(productIndex, 1, action.payload);

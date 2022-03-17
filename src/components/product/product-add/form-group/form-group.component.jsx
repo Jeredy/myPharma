@@ -31,7 +31,7 @@ const Basic = ({ state, addProduct, updateProduct }) => {
     try {
       if (!!state) {
         values._id = _id;
-        console.log(_id)
+        
         await axios.put("/product/update", values);
         updateProduct(values);
         return navigate(-1);

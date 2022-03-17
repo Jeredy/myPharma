@@ -4,25 +4,26 @@ import { connect } from "react-redux";
 
 import { Button } from "../../../button/button.styles";
 import axios from "../../../../api/api";
-import { deleteProducts } from "../../../../redux/products/product.actions";
+import { deleteCategories } from "../../../../redux/categories/category.actions";
 
 import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
 
-const HeaderPreview = ({ idList }) => {
+const CategoryHeaderPreview = ({ idList, deleteCategories }) => {
   const navigate = useNavigate();
 
   /**
-   * Delete product from database
-   * @param {array} checkboxId
+   * Delete product from database and from redux state
+   * @param {array} id
    * @return boolean
    */
-   const deleteCategoryApi = async (id) => {
+  const deleteCategoryApi = async (id) => {
     try {
-      // await axios.delete("/product/delete", {
-      //   data: {
-      //     idList: JSON.stringify(id),
-      //   },
-      // });
+      await axios.delete("/category/delete", {
+        data: {
+          idList: JSON.stringify(id),
+        },
+      });
+      deleteCategories(id);
     } catch (error) {
       console.log({ error });
     }
@@ -55,7 +56,6 @@ const HeaderPreview = ({ idList }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteProducts: (deleteList) => dispatch(deleteProducts(deleteList)),
+  deleteCategories: (deleteList) => dispatch(deleteCategories(deleteList)),
 });
-export default connect(null, mapDispatchToProps)(HeaderPreview);
-
+export default connect(null, mapDispatchToProps)(CategoryHeaderPreview);

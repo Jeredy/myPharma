@@ -1,13 +1,18 @@
 import React from "react";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
 import FormInput from "../../../form-input/form-input.component";
 import axios from "../../../../api/api";
+import {
+  addCategory,
+  updateCategory,
+} from "../../../../redux/categories/category.actions";
 
 import { Container, FormContainer } from "./form-group.styles";
 
-const Basic = ({ state }) => {
+const CategoryFormGroup = ({ state, addCategory, updateCategory }) => {
   const { _id, name, description } = state ?? "";
   const navigate = useNavigate();
 
@@ -15,10 +20,15 @@ const Basic = ({ state }) => {
     try {
       if (!!state) {
         values._id = _id;
-        return await axios.put("/category/update", values);
+        
+        await axios.put("/category/update", values);
+        updateCategory(values);
+        return navigate(-1);
       }
 
       await axios.post("/category/store", values);
+      addCategory(values);
+
       navigate(-1);
     } catch (err) {
       console.log(err);
@@ -88,4 +98,9 @@ const Basic = ({ state }) => {
   );
 };
 
-export default Basic;
+const mapDispatchToProps = (dispatch) => ({
+  addCategory: (category) => dispatch(addCategory(category)),
+  updateCategory: (category) => dispatch(updateCategory(category)),
+});
+
+export default connect(null, mapDispatchToProps)(CategoryFormGroup);

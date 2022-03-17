@@ -16,7 +16,7 @@ const HeaderPreview = ({ idList, deleteProducts }) => {
    * @param {array} checkboxId
    * @return boolean
    */
-  const deleteCategoryApi = async (id) => {
+  const deleteProductApi = async (id) => {
     try {
       await axios.delete("/product/delete", {
         data: {
@@ -49,7 +49,7 @@ const HeaderPreview = ({ idList, deleteProducts }) => {
           colorFont="#282828"
           id="add-product-btn"
           id="delete-product-btn"
-          onClick={() => deleteCategoryApi(idList)}
+          onClick={() => deleteProductApi(idList)}
         >
           DELETAR
         </Button>

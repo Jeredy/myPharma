@@ -5,7 +5,7 @@ import ProductItem from "../product-item/product-item.component";
 
 import { Container, TitleContainer, Item } from "./directory.styles";
 
-const Directory = ({ checkboxDeleteList, products }) => {
+const ProductDirectory = ({ checkboxDeleteList, products }) => {
   return (
     <Container>
       <TitleContainer>
@@ -28,4 +28,4 @@ const mapStateToProps = (state) => ({
   products: state.product.products,
 });
 
-export default connect(mapStateToProps)(Directory);
+export default connect(mapStateToProps)(ProductDirectory);
