@@ -11,8 +11,10 @@ import {
   DropdownWrapper,
   IconContainer,
   Icon,
-  Title
+  Title,
+  Logout,
 } from "./dropdown.styles";
+import { BiLogOut } from "react-icons/bi";
 
 function Dropdown({ isOpen, toggle }) {
   const [selected, setSelected] = React.useState(0);
@@ -21,12 +23,16 @@ function Dropdown({ isOpen, toggle }) {
     setSelected(index);
   };
 
+  const clearStorage = () => {
+    localStorage.removeItem('@admin')
+  }
+
   return (
     <DropdownContainer isOpen={isOpen}>
       <DropdownWrapper isOpen={isOpen}>
         <IconContainer onClick={toggle}>
           <CloseIcon />
-          <Title isOpen={isOpen}>MyPharma  </Title>
+          <Title isOpen={isOpen}>MyPharma </Title>
         </IconContainer>
         <DropdownMenu>
           {menuData.map((item, index) => (
@@ -43,7 +49,12 @@ function Dropdown({ isOpen, toggle }) {
             </DropdownLink>
           ))}
         </DropdownMenu>
-        <BtnWrap></BtnWrap>
+        <BtnWrap onClick={clearStorage}>
+          <Icon>
+            <BiLogOut fill={"#18171c"}/>
+          </Icon>
+          <Logout isOpen={isOpen}>LOGOUT</Logout>
+        </BtnWrap>
       </DropdownWrapper>
     </DropdownContainer>
   );

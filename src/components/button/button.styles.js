@@ -26,6 +26,7 @@ export const Button = styled.div`
     background: ${({ border, colorFont }) => (border ? colorFont : "#fff")};
     border: ${({ border, color }) => !border && `1px solid ${color}`};
     color: ${({ colorFont, color }) => (color ? color : colorFont)};
+    box-shadow: 0px 1px 2px #999;
     cursor: pointer;
   }
 `;

@@ -14,13 +14,13 @@ import { Container, SubContainer } from "./App.styles.js";
 
 const App = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [authToken, setAuthToken] = React.useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
+  const authToken = localStorage.getItem("@admin");
   if (!authToken) {
-    return <SignInSignUp setAuthToken={setAuthToken}/>;
+    return <SignInSignUp/>;
   }
 
   return (
@@ -30,7 +30,7 @@ const App = () => {
       <SubContainer>
         <Header toggle={toggle} />
         <Routes>
-          <Route path="/product/*" element={<ProductRoot />} />
+          <Route path="/*" element={<ProductRoot />} />
           <Route path="/category/*" element={<CategorytRoot />} />
           <Route path="/brand/*" element={<BrandRoot />} />
         </Routes>

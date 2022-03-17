@@ -11,17 +11,28 @@ import {
   Title,
   ForgotPassword,
   ButtonContainer,
-  LinkButton
+  LinkButton,
 } from "./form-group.styles";
 import { Button } from "../../../../components/button/button.styles";
 
 const FormGroup = () => {
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
-      return axios.put("/signin", values);
+      const {
+        data: {
+          admin: { _id, name, email },
+        },
+      } = await axios.post("/signin", values);
+      localStorage.setItem("@admin", JSON.stringify({ _id, name, email }));
+
+      return console.log("logged successfully");
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const submiteClick = () => {
+    document.getElementById("button-submit").click();
   };
 
   return (
@@ -95,6 +106,7 @@ const FormGroup = () => {
           color="#282828"
           colorFont="#fff"
           fullscreen
+          onClick={submiteClick}
         >
           Fazer Login
         </Button>

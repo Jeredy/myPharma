@@ -9,7 +9,6 @@ import {
   FormContainer,
   FormSubContainer,
   Title,
-  ForgotPassword,
   ButtonContainer,
 } from "./form-group.styles";
 import { useNavigate } from "react-router-dom";
@@ -18,12 +17,18 @@ import { Button } from "../../../../components/button/button.styles";
 const FormGroup = () => {
   const navigate = useNavigate();
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
-      return axios.put("/signin", values);
+      const result = await axios.post("/signup", values);
+
+      navigate(-1);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const submiteClick = () => {
+    document.getElementById("button-submit").click();
   };
 
   return (
@@ -64,7 +69,7 @@ const FormGroup = () => {
         }) => (
           <FormContainer onSubmit={handleSubmit}>
             <FormSubContainer>
-            <FormInput
+              <FormInput
                 type="name"
                 name="name"
                 handleChange={handleChange}
@@ -110,6 +115,7 @@ const FormGroup = () => {
           color="#282828"
           colorFont="#fff"
           fullscreen
+          onClick={submiteClick}
         >
           Registrar
         </Button>

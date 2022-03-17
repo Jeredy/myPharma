@@ -53,6 +53,8 @@ export const CloseIcon = styled(FaBars)`
 export const DropdownWrapper = styled.div`
   display: flex;
   width: ${({ isOpen }) => (isOpen ? "60px" : "180px")};
+  height: 100%;
+  max-height: 100vh;
   flex-direction: column;
 `;
 
@@ -73,7 +75,6 @@ export const DropdownLink = styled(Link)`
   list-style: none;
   cursor: pointer;
   transition: 0.2s ease-in-out;
-  font-weight: 500;
   text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   margin: 0.5rem 0.5rem;
   height: 45px;
@@ -91,7 +92,7 @@ export const DropdownLink = styled(Link)`
   }
 
   &:hover {
-    color: #000d1a;
+    box-shadow: 0px 1px 2px #999;
   }
 `;
 
@@ -103,5 +104,32 @@ export const DropdownName = styled.p`
 `;
 export const BtnWrap = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: row;
+  cursor: pointer;
+  margin: auto .5rem 1rem .5rem;
+  background: rgba(24, 23, 28, 0.2);
+  border: 1px solid #999;
+  padding: .3rem;
+
+  &:hover {
+    box-shadow: 0px 1px 2px #999;
+  }
+`;
+
+export const Logout = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #18171c;
+  transition: 0.2s ease-in-out;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  opacity: ${({ isOpen }) => (isOpen ? "0" : "1")};
+  margin-left: -0.5rem;
+  margin-right: .6rem;
+  transition: 0.2s ease-in-out;
+  font-size: 0.8rem;
+
+  
 `;
