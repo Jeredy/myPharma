@@ -14,7 +14,7 @@ const ProductRoot = () => {
         <Title>MyPharma</Title>
       </Header>
       <Routes>
-        <Route exact path="/" element={<SignIn />} />
+        <Route exact path="/*" element={<SignIn />} />
         <Route exact path="/signup" element={<SignUp />} />
       </Routes>
     </Container>

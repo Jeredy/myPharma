@@ -1,6 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+
+const LinkContainer = css`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #18171c;
+  font-size: 1.5rem;
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  height: 45px;
+  margin: 0.5rem 0.5rem;
+`;
 
 export const DropdownContainer = styled.div`
   width: ${({ isOpen }) => (isOpen ? "60px" : "180px")};
@@ -66,18 +81,7 @@ export const DropdownMenu = styled.div`
 `;
 
 export const DropdownLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  color: #18171c;
-  font-size: 1.5rem;
-  text-decoration: none;
-  list-style: none;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  margin: 0.5rem 0.5rem;
-  height: 45px;
+  ${LinkContainer}
 
   &.active {
     background: rgba(24, 23, 28, 0.3);
@@ -103,15 +107,10 @@ export const DropdownName = styled.p`
   font-size: 0.8rem;
 `;
 export const BtnWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  cursor: pointer;
-  margin: auto .5rem 1rem .5rem;
+  ${LinkContainer}
+
+  margin: auto 0.5rem 0.9rem 0.5rem;
   background: rgba(24, 23, 28, 0.2);
-  border: 1px solid #999;
-  padding: .3rem;
 
   &:hover {
     box-shadow: 0px 1px 2px #999;
@@ -127,9 +126,7 @@ export const Logout = styled.p`
   text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   opacity: ${({ isOpen }) => (isOpen ? "0" : "1")};
   margin-left: -0.5rem;
-  margin-right: .6rem;
+  margin-right: 0.6rem;
   transition: 0.2s ease-in-out;
   font-size: 0.8rem;
-
-  
 `;

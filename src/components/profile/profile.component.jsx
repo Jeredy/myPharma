@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   Container,
   Subcontainer,
@@ -7,11 +8,12 @@ import {
   Position,
 } from "./profile.styles";
 
-const Profile = () => {
+const Profile = ({ currentAdmin }) => {
+  const { name } = currentAdmin;
   return (
     <Container>
       <Subcontainer>
-        <Name>Andre Rodrigues</Name>
+        <Name>{name}</Name>
         <Position>Admin</Position>
       </Subcontainer>
       <Image src="https://images.pexels.com/photos/842980/pexels-photo-842980.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
@@ -19,4 +21,8 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  currentAdmin: state.admin.currentAdmin,
+});
+
+export default connect(mapStateToProps)(Profile);

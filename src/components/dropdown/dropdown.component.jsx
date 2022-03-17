@@ -15,17 +15,22 @@ import {
   Logout,
 } from "./dropdown.styles";
 import { BiLogOut } from "react-icons/bi";
+import { connect } from "react-redux";
+import { setCurrentAdmin } from "../../redux/admin/admin.actions";
+import { useNavigate } from "react-router-dom";
 
-function Dropdown({ isOpen, toggle }) {
+function Dropdown({ setCurrentAdmin, isOpen, toggle }) {
   const [selected, setSelected] = React.useState(0);
+  const navigation = useNavigate();
 
   const toggleSelect = (index) => {
     setSelected(index);
   };
 
-  const clearStorage = () => {
-    localStorage.removeItem('@admin')
-  }
+  const logout = () => {
+    setCurrentAdmin();
+    navigation('/')
+  };
 
   return (
     <DropdownContainer isOpen={isOpen}>
@@ -49,9 +54,9 @@ function Dropdown({ isOpen, toggle }) {
             </DropdownLink>
           ))}
         </DropdownMenu>
-        <BtnWrap onClick={clearStorage}>
+        <BtnWrap onClick={logout}>
           <Icon>
-            <BiLogOut fill={"#18171c"}/>
+            <BiLogOut fill={"#18171c"} />
           </Icon>
           <Logout isOpen={isOpen}>LOGOUT</Logout>
         </BtnWrap>
@@ -60,4 +65,8 @@ function Dropdown({ isOpen, toggle }) {
   );
 }
 
-export default Dropdown;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentAdmin: () => dispatch(setCurrentAdmin(null)),
+});
+
+export default connect(null, mapDispatchToProps)(Dropdown);

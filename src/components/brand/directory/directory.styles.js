@@ -25,7 +25,7 @@ export const TitleContainer = styled.div`
 
   p:last-child {
     justify-content: flex-end;
-    padding: 4rem;
+    padding-right: 4rem;
     flex: 20%;
   }
 `;
@@ -37,6 +37,7 @@ export const Item = styled.p`
   color: #686868;
   justify-content: center;
   flex: 80%;
+  max-height: 60px;
   inline-size: 130px;
   overflow-wrap: break-word;
 `;

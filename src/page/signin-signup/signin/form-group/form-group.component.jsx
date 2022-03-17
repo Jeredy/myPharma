@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import { connect } from "react-redux";
 
 import FormInput from "../../../../components/form-input/form-input.component";
 import axios from "../../../../api/api";
@@ -14,8 +15,9 @@ import {
   LinkButton,
 } from "./form-group.styles";
 import { Button } from "../../../../components/button/button.styles";
+import { setCurrentAdmin } from "../../../../redux/admin/admin.actions";
 
-const FormGroup = () => {
+const FormGroup = ({ setCurrentAdmin }) => {
   const onSubmit = async (values) => {
     try {
       const {
@@ -23,8 +25,8 @@ const FormGroup = () => {
           admin: { _id, name, email },
         },
       } = await axios.post("/signin", values);
-      localStorage.setItem("@admin", JSON.stringify({ _id, name, email }));
-
+      
+      setCurrentAdmin({ _id, name, email });
       return console.log("logged successfully");
     } catch (err) {
       console.log(err);
@@ -125,4 +127,8 @@ const FormGroup = () => {
   );
 };
 
-export default FormGroup;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentAdmin: (admin) => dispatch(setCurrentAdmin(admin)),
+});
+
+export default connect(null, mapDispatchToProps)(FormGroup);

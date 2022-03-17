@@ -25,7 +25,7 @@ export const TitleContainer = styled.div`
 
   p:last-child {
     justify-content: flex-end;
-    padding: 4rem;
+    padding-right: 4rem;
   }
 `;
 

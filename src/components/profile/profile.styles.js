@@ -15,7 +15,8 @@ export const Name = styled.p`
   color: #282828;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   font-size: 0.9rem;
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
+  text-transform: capitalize;
 `;
 export const Position = styled.p`
   color: #666;
