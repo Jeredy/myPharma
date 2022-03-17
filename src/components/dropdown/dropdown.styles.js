@@ -19,6 +19,7 @@ const LinkContainer = css`
 
 export const DropdownContainer = styled.div`
   width: ${({ isOpen }) => (isOpen ? "72px" : "180px")};
+  padding: .6rem 0rem;
   background: #fff;
   display: grid;
   align-items: flex-start;
@@ -112,7 +113,7 @@ export const BtnWrap = styled.div`
   ${LinkContainer}
   width: ${({ isOpen }) => (isOpen ? "50px" : "150px")};
 
-  margin: auto 0.5rem 0.9rem 0.5rem;
+  margin: auto 0.5rem 1.5rem 0.5rem;
   background: rgba(24, 23, 28, 0.2);
 
   &:hover {
