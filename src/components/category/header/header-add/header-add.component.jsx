@@ -4,18 +4,17 @@ import { Button } from "../../../button/button.styles";
 
 import { Container, Title, ButtonContainer } from "./header-add.styles.js";
 
-const HeaderPreview = ({ handleSubmit, update }) => {
+const HeaderAdd = ({ handleSubmit, update }) => {
   const navigate = useNavigate();
 
   return (
     <Container>
-       <Title>{`${update ? "Atualizar Categoria" : "Novo Categoria"}`}</Title>
+      <Title>{`${update ? "Atualizar Categoria" : "Novo Categoria"}`}</Title>
       <ButtonContainer>
         <Button
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
-          id="add-category-btn"
           onClick={handleSubmit}
         >
           SALVAR
@@ -24,7 +23,6 @@ const HeaderPreview = ({ handleSubmit, update }) => {
           border="1px solid #282828"
           color="#fff"
           colorFont="#282828"
-          id="add-category-btn"
           onClick={() => navigate(-1)}
         >
           CANCELAR
@@ -34,4 +32,4 @@ const HeaderPreview = ({ handleSubmit, update }) => {
   );
 };
 
-export default HeaderPreview;
+export default HeaderAdd;

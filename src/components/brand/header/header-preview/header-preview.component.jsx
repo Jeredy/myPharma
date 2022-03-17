@@ -37,7 +37,6 @@ const HeaderPreview = ({ idList }) => {
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
-          id="add-category-btn"
           onClick={() => navigate("add-brand")}
         >
           ADICIONAR
@@ -46,8 +45,6 @@ const HeaderPreview = ({ idList }) => {
           border="1px solid #282828"
           color="#fff"
           colorFont="#282828"
-          id="add-category-btn"
-          id="delete-category-btn"
           onClick={() => deleteProduct(idList)}
         >
           DELETAR

@@ -1,11 +1,16 @@
 import React from "react";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
 import FormInput from "../../../form-input/form-input.component";
 import FormSelect from "../../../form-select/form-select.component";
 import { BRAND } from "../../../../data/brandData";
 import axios from "../../../../api/api";
+import {
+  addProduct,
+  updateProduct,
+} from "../../../../redux/products/product.actions";
 
 import {
   Container,
@@ -13,20 +18,29 @@ import {
   FormSubContainer,
 } from "./form-group.styles";
 
-const Basic = ({ state }) => {
+const Basic = ({ state, addProduct, updateProduct }) => {
   const { _id, category, brand, name, description, price, inventory } =
     state ?? "";
 
   const navigate = useNavigate();
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+    values.price = parseFloat(values.price);
+    values.inventory = parseFloat(values.inventory);
+
     try {
       if (!!state) {
         values._id = _id;
-        return axios.put("/product/update", values);
+        console.log(_id)
+        await axios.put("/product/update", values);
+        updateProduct(values);
+        return navigate(-1);
       }
 
-      axios.post("/product/store", values);
+      await axios.post("/product/store", values);
+      addProduct(values);
+
+      navigate(-1);
     } catch (err) {
       console.log(err);
     }
@@ -60,15 +74,20 @@ const Basic = ({ state }) => {
           if (!values.price) {
             errors.price = "Required";
           }
+          if (typeof values.price !== "number") {
+            errors.price = "Price must be a number.";
+          }
           if (!values.inventory) {
             errors.inventory = "Required";
+          }
+          if (typeof values.inventory !== "number") {
+            errors.inventory = "Inventory must be a number.";
           }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           onSubmit(values);
           setSubmitting(false);
-          navigate(-1);
         }}
       >
         {({
@@ -83,7 +102,7 @@ const Basic = ({ state }) => {
           <FormContainer onSubmit={handleSubmit}>
             <FormSubContainer>
               <FormInput
-                type="name"
+                type="text"
                 name="name"
                 handleChange={handleChange}
                 onBlur={handleBlur}
@@ -93,7 +112,7 @@ const Basic = ({ state }) => {
                 label="Nome"
               />
               <FormInput
-                type="description"
+                type="text"
                 name="description"
                 handleChange={handleChange}
                 onBlur={handleBlur}
@@ -103,7 +122,7 @@ const Basic = ({ state }) => {
                 label="Descrição"
               />{" "}
               <FormInput
-                type="price"
+                type="number"
                 name="price"
                 handleChange={handleChange}
                 onBlur={handleBlur}
@@ -137,8 +156,8 @@ const Basic = ({ state }) => {
                 error={errors.category}
                 errorMessage={errors.category}
               />
-               <FormInput
-                type="inventory"
+              <FormInput
+                type="number"
                 name="inventory"
                 handleChange={handleChange}
                 onBlur={handleBlur}
@@ -161,4 +180,9 @@ const Basic = ({ state }) => {
   );
 };
 
-export default Basic;
+const mapDispatchToProps = (dispatch) => ({
+  addProduct: (product) => dispatch(addProduct(product)),
+  updateProduct: (product) => dispatch(updateProduct(product)),
+});
+
+export default connect(null, mapDispatchToProps)(Basic);

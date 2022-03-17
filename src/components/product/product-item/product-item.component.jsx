@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   Container,
   Checkbox,
@@ -8,10 +9,12 @@ import {
 } from "./product-item.styles.js";
 import { Button } from "../../button/button.styles";
 import axios from "../../../api/api";
+import { deleteProducts } from "../../../redux/products/product.actions";
 
 const ProductItem = ({
   productItem: { _id, category, brand, name, description, price, inventory },
   checkboxDeleteList,
+  deleteProducts,
 }) => {
   const [checkbox, setCheckbox] = React.useState(false);
 
@@ -24,15 +27,14 @@ const ProductItem = ({
    * @param {array} checkboxId
    * @return boolean
    */
-  const deleteProduct = async (id) => {
+  const deleteProductApi = async (id) => {
     try {
-      await axios
-        .delete("/product/delete", {
-          data: {
-            idList: JSON.stringify(id),
-          },
-        })
-        .then(() => window.location.reload());
+      await axios.delete("/product/delete", {
+        data: {
+          idList: JSON.stringify(id),
+        },
+      });
+      deleteProducts(id);
     } catch (error) {
       console.log({ error });
     }
@@ -72,7 +74,7 @@ const ProductItem = ({
             color="#fff"
             colorFont="#f31"
             border="1px solid #f31"
-            onClick={() => deleteProduct(_id)} 
+            onClick={() => deleteProductApi(_id)}
           >
             Delete
           </Button>
@@ -82,4 +84,7 @@ const ProductItem = ({
   );
 };
 
-export default ProductItem;
+const mapDispatchToProps = (dispatch) => ({
+  deleteProducts: (deleteList) => dispatch(deleteProducts(deleteList)),
+});
+export default connect(null, mapDispatchToProps)(ProductItem);

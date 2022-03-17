@@ -19,9 +19,9 @@ const App = ({ currentAdmin }) => {
     setIsOpen(!isOpen);
   };
 
-  if (currentAdmin === null) {
-    return <SignInSignUp />;
-  }
+  // if (currentAdmin === null) {
+  //   return <SignInSignUp />;
+  // }
 
   return (
     <Container>
@@ -53,7 +53,7 @@ const App = ({ currentAdmin }) => {
     </Container>
   );
 };
-// git commit -m "feat: created redux store and accessing user info by redux. Limiting route access by authorization"
+
 const mapStateToProps = (state) => ({
   currentAdmin: state.admin.currentAdmin,
 });

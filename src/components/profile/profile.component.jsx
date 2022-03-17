@@ -9,7 +9,7 @@ import {
 } from "./profile.styles";
 
 const Profile = ({ currentAdmin }) => {
-  const { name } = currentAdmin;
+  const { name } = currentAdmin ?? "test";
   return (
     <Container>
       <Subcontainer>

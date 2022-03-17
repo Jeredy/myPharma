@@ -1,29 +1,29 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../button/button.styles";
+import { connect } from "react-redux";
 
+import { Button } from "../../../button/button.styles";
 import axios from "../../../../api/api";
+import { deleteProducts } from "../../../../redux/products/product.actions";
 
 import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
 
-const HeaderPreview = ({ idList }) => {
+const HeaderPreview = ({ idList, deleteProducts }) => {
   const navigate = useNavigate();
 
   /**
-   * Delete product from database
+   * Delete product from database and from redux state
    * @param {array} checkboxId
    * @return boolean
    */
-  const deleteProduct = async (idList) => {
-
+  const deleteCategoryApi = async (id) => {
     try {
-      await axios
-        .delete("/product/delete", {
-          data: {
-            idList: JSON.stringify(idList),
-          },
-        })
-        .then(() => window.location.reload());
+      await axios.delete("/product/delete", {
+        data: {
+          idList: JSON.stringify(id),
+        },
+      });
+      deleteProducts(id);
     } catch (error) {
       console.log({ error });
     }
@@ -49,7 +49,7 @@ const HeaderPreview = ({ idList }) => {
           colorFont="#282828"
           id="add-product-btn"
           id="delete-product-btn"
-          onClick={() => deleteProduct(idList)}
+          onClick={() => deleteCategoryApi(idList)}
         >
           DELETAR
         </Button>
@@ -58,4 +58,7 @@ const HeaderPreview = ({ idList }) => {
   );
 };
 
-export default HeaderPreview;
+const mapDispatchToProps = (dispatch) => ({
+  deleteProducts: (deleteList) => dispatch(deleteProducts(deleteList)),
+});
+export default connect(null, mapDispatchToProps)(HeaderPreview);

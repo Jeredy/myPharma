@@ -11,14 +11,15 @@ const Basic = ({ state }) => {
   const { _id, name, description } = state ?? "";
   const navigate = useNavigate();
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
       if (!!state) {
         values._id = _id;
-        return axios.put("/category/update", values);
+        return await axios.put("/category/update", values);
       }
 
-      axios.post("/category/store", values);
+      await axios.post("/category/store", values);
+      navigate(-1);
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +42,6 @@ const Basic = ({ state }) => {
         onSubmit={(values, { setSubmitting }) => {
           onSubmit(values);
           setSubmitting(false);
-          navigate(-1);
         }}
       >
         {({

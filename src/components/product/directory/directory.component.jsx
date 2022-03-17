@@ -1,30 +1,11 @@
 import React from "react";
-import axios from "../../../api/api";
+import { connect } from "react-redux";
+
 import ProductItem from "../product-item/product-item.component";
 
 import { Container, TitleContainer, Item } from "./directory.styles";
 
-const Directory = ({ checkboxDeleteList }) => {
-  const [products, setProducts] = React.useState([]);
-
-  /**
-   * Get products from data base and set it in a variable.
-   */
-  const getProducts = async () => {
-    try {
-      await axios.get("/product").then((res) => {
-        const data = res.data;
-        setProducts(data);
-      });
-    } catch (e) {
-      console.log("error: ", e);
-    }
-  };
-
-  React.useEffect(() => {
-    getProducts();
-  }, []);
-
+const Directory = ({ checkboxDeleteList, products }) => {
   return (
     <Container>
       <TitleContainer>
@@ -33,7 +14,7 @@ const Directory = ({ checkboxDeleteList }) => {
         <Item>Marca</Item>
         <Item>Opções</Item>
       </TitleContainer>
-      {products.map((productItem) => (
+      {products?.map((productItem) => (
         <ProductItem
           key={productItem._id}
           productItem={productItem}
@@ -43,5 +24,8 @@ const Directory = ({ checkboxDeleteList }) => {
     </Container>
   );
 };
+const mapStateToProps = (state) => ({
+  products: state.product.products,
+});
 
-export default Directory;
+export default connect(mapStateToProps)(Directory);
