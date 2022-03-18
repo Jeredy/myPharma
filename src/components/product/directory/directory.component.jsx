@@ -28,6 +28,7 @@ const ProductDirectory = ({
   setProductsSearchName,
   setProductsSearchBrand,
   setProductsSearchCategory,
+  clearSearch,
 }) => {
   const [searchName, setSearchName] = React.useState("");
   const [searchCategory, setSearchCategory] = React.useState("");
@@ -55,6 +56,13 @@ const ProductDirectory = ({
     setSearchCategory(category);
     setProductsSearchCategory(category);
   };
+
+  React.useEffect(() => {
+    setSearchName("");
+    setSearchBrand("");
+    setSearchCategory("");
+  }, [clearSearch]);
+
   return (
     <Container>
       <TitleContainer>
@@ -133,6 +141,7 @@ const mapStateToProps = (state) => ({
   products: state.product.products,
   currentPage: state.product.pageNumber,
   totalPageNumbers: state.product.totalPageNumbers,
+  clearSearch: state.product.clearSearch,
 });
 
 const mapDispatchToProps = (dispatch) => ({

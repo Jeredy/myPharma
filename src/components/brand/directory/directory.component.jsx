@@ -24,6 +24,7 @@ const BrandDirectory = ({
   setBrandsPage,
   currentPage,
   setBrandsSearchName,
+  clearSearch,
 }) => {
   const [searchName, setSearchName] = React.useState("");
 
@@ -36,6 +37,11 @@ const BrandDirectory = ({
     setBrandsSearchName(name);
   };
 
+  
+  React.useEffect(() => {
+    setSearchName("");
+  }, [clearSearch]);
+  
   return (
     <Container>
       <TitleContainer>
@@ -97,6 +103,7 @@ const mapStateToProps = (state) => ({
   brands: state.brand.brands,
   currentPage: state.brand.pageNumber,
   totalPageNumbers: state.brand.totalPageNumbers,
+  clearSearch: state.brand.clearSearch,
 });
 
 const mapDispatchToProps = (dispatch) => ({

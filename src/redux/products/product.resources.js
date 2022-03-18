@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   searchName: "",
   searchCategory: "",
   searchBrand: "",
+  clearSearch: "",
 };
 
 const productsResources = (state = INITIAL_STATE, action) => {
@@ -69,6 +70,11 @@ const productsResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchBrand: action.payload,
+      };
+    case ProductActionsTypes.SET_PRODUCTS_CLEAR_SEARCH:
+      return {
+        ...state,
+        clearSearch: !state.clearSearch,
       };
     default:
       return state;

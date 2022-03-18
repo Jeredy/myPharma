@@ -34,3 +34,8 @@ export const setBrandsSearchName = (searchName) => ({
   type: BrandActionsTypes.SET_BRANDS_SEARCH_NAME,
   payload: searchName,
 });
+
+export const setBrandsClearSearch = (clearSearch) => ({
+  type: BrandActionsTypes.SET_BRANDS_CLEAR_SEARCH,
+  payload: clearSearch,
+});

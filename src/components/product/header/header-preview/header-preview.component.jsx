@@ -2,13 +2,31 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
+import {
+  setProductsSearchName,
+  setProductsSearchBrand,
+  setProductsSearchCategory,
+  setProductsClearSearch,
+} from "../../../../redux/products/product.actions";
 import { Button } from "../../../button/button.styles";
 import axios from "../../../../api/api";
 import { deleteProducts } from "../../../../redux/products/product.actions";
 
-import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
+import {
+  Container,
+  TitleContainer,
+  Title,
+  ButtonContainer,
+} from "./header-preview.styles.js";
 
-const HeaderPreview = ({ idList, deleteProducts }) => {
+const HeaderPreview = ({
+  idList,
+  deleteProducts,
+  setProductsSearchName,
+  setProductsSearchBrand,
+  setProductsSearchCategory,
+  setProductsClearSearch,
+}) => {
   const navigate = useNavigate();
 
   /**
@@ -30,15 +48,31 @@ const HeaderPreview = ({ idList, deleteProducts }) => {
     return true;
   };
 
+  const clearFilter = () => {
+    setProductsSearchName("");
+    setProductsSearchBrand("");
+    setProductsSearchCategory("");
+    setProductsClearSearch();
+  };
+
   return (
     <Container>
-      <Title>Produtos - Lista</Title>
+      <TitleContainer>
+        <Title>Produtos - Lista</Title>
+        <Button
+          border="1px solid #282828"
+          color="#fff"
+          colorFont="#282828"
+          onClick={clearFilter}
+        >
+          Limpar Pesquisa
+        </Button>
+      </TitleContainer>
       <ButtonContainer>
         <Button
           border="1px solid #282828"
           color="#282828"
           colorFont="#fff"
-          id="add-product-btn"
           onClick={() => navigate("add-product")}
         >
           ADICIONAR
@@ -47,8 +81,6 @@ const HeaderPreview = ({ idList, deleteProducts }) => {
           border="1px solid #282828"
           color="#fff"
           colorFont="#282828"
-          id="add-product-btn"
-          id="delete-product-btn"
           onClick={() => deleteProductApi(idList)}
         >
           DELETAR
@@ -60,5 +92,13 @@ const HeaderPreview = ({ idList, deleteProducts }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   deleteProducts: (deleteList) => dispatch(deleteProducts(deleteList)),
+  setProductsSearchName: (searchName) =>
+    dispatch(setProductsSearchName(searchName)),
+  setProductsSearchBrand: (searchBrand) =>
+    dispatch(setProductsSearchBrand(searchBrand)),
+  setProductsSearchCategory: (searchCategory) =>
+    dispatch(setProductsSearchCategory(searchCategory)),
+  setProductsClearSearch: (clearSearch) =>
+    dispatch(setProductsClearSearch(clearSearch)),
 });
 export default connect(null, mapDispatchToProps)(HeaderPreview);

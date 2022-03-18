@@ -39,3 +39,8 @@ export const setCategoriesSearchDescription = (searchDescription) => ({
   type: CategoryActionsTypes.SET_CATEGORIES_SEARCH_DESCRIPTION,
   payload: searchDescription,
 });
+
+export const setCategoriesClearSearch = (clearSearch) => ({
+  type: CategoryActionsTypes.SET_CATEGORIES_CLEAR_SEARCH,
+  payload: clearSearch,
+});

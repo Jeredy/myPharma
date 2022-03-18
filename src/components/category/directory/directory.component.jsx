@@ -26,10 +26,11 @@ const CategoryDirectory = ({
   currentPage,
   setCategoriesSearchName,
   setCategoriesSearchDescription,
+  clearSearch,
 }) => {
   const [searchName, setSearchName] = React.useState("");
   const [searchDescription, setSearchDescription] = React.useState("");
-  
+
   const pages = new Array(totalPageNumbers).fill(null).map((x, i) => i);
 
   const handleChangeName = (e) => {
@@ -45,6 +46,11 @@ const CategoryDirectory = ({
     setCategoriesSearchDescription(description);
     setSearchDescription(description);
   };
+
+  React.useEffect(() => {
+    setSearchName("");
+    setSearchDescription("");
+  }, [clearSearch]);
 
   return (
     <Container>
@@ -117,6 +123,7 @@ const mapStateToProps = (state) => ({
   categories: state.category.categories,
   currentPage: state.category.pageNumber,
   totalPageNumbers: state.category.totalPageNumbers,
+  clearSearch: state.category.clearSearch,
 });
 
 const mapDispatchToProps = (dispatch) => ({

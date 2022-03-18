@@ -43,3 +43,8 @@ export const setProductsSearchCategory = (searchCategory) => ({
   type: ProductActionsTypes.SET_PRODUCTS_SEARCH_CATEGORY,
   payload: searchCategory,
 });
+
+export const setProductsClearSearch = (clearSearch) => ({
+  type: ProductActionsTypes.SET_PRODUCTS_CLEAR_SEARCH,
+  payload: clearSearch,
+});

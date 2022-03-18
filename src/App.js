@@ -101,7 +101,6 @@ const App = ({
         .get(`/brand?page=${brandsPageNumber}&&name=${brandsSearchName}`)
         .then((res) => {
           const { brands, totalPages } = res.data;
-          console.log(brands, totalPages);
           setBrandsTotalPages(totalPages);
           setBrands(brands);
         });

@@ -4,11 +4,27 @@ import { connect } from "react-redux";
 
 import { Button } from "../../../button/button.styles";
 import axios from "../../../../api/api";
-import { deleteCategories } from "../../../../redux/categories/category.actions";
+import {
+  deleteCategories,
+  setCategoriesClearSearch,
+  setCategoriesSearchName,
+  setCategoriesSearchDescription,
+} from "../../../../redux/categories/category.actions";
 
-import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
+import {
+  Container,
+  TitleContainer,
+  Title,
+  ButtonContainer,
+} from "./header-preview.styles.js";
 
-const CategoryHeaderPreview = ({ idList, deleteCategories }) => {
+const CategoryHeaderPreview = ({
+  idList,
+  deleteCategories,
+  setCategoriesClearSearch,
+  setCategoriesSearchName,
+  setCategoriesSearchDescription,
+}) => {
   const navigate = useNavigate();
 
   /**
@@ -30,9 +46,26 @@ const CategoryHeaderPreview = ({ idList, deleteCategories }) => {
     return true;
   };
 
+  const clearFilter = () => {
+    setCategoriesSearchName("");
+    setCategoriesSearchDescription("");
+    setCategoriesClearSearch();
+  };
+
   return (
     <Container>
-      <Title>Categorias - Lista</Title>
+      <TitleContainer>
+        <Title>Categorias - Lista</Title>
+
+        <Button
+          border="1px solid #282828"
+          color="#fff"
+          colorFont="#282828"
+          onClick={clearFilter}
+        >
+          Limpar Pesquisa
+        </Button>
+      </TitleContainer>
       <ButtonContainer>
         <Button
           border="1px solid #282828"
@@ -57,5 +90,11 @@ const CategoryHeaderPreview = ({ idList, deleteCategories }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   deleteCategories: (deleteList) => dispatch(deleteCategories(deleteList)),
+  setCategoriesSearchName: (searchName) =>
+    dispatch(setCategoriesSearchName(searchName)),
+  setCategoriesSearchDescription: (searchDescription) =>
+    dispatch(setCategoriesSearchDescription(searchDescription)),
+  setCategoriesClearSearch: (clearSearch) =>
+    dispatch(setCategoriesClearSearch(clearSearch)),
 });
 export default connect(null, mapDispatchToProps)(CategoryHeaderPreview);

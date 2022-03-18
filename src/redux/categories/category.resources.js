@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   pageNumber: 0,
   searchName: "",
   searchDescription: "",
+  clearSearch: false,
 };
 
 const categoriesResources = (state = INITIAL_STATE, action) => {
@@ -71,6 +72,11 @@ const categoriesResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchDescription: action.payload,
+      };
+    case CategoryActionsTypes.SET_CATEGORIES_CLEAR_SEARCH:
+      return {
+        ...state,
+        clearSearch: !state.clearSearch,
       };
     default:
       return state;

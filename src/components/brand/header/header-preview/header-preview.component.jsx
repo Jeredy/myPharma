@@ -4,11 +4,25 @@ import { connect } from "react-redux";
 
 import { Button } from "../../../button/button.styles";
 import axios from "../../../../api/api";
-import { deleteBrands } from "../../../../redux/brands/brand.actions";
+import {
+  deleteBrands,
+  setBrandsSearchName,
+  setBrandsClearSearch,
+} from "../../../../redux/brands/brand.actions";
 
-import { Container, Title, ButtonContainer } from "./header-preview.styles.js";
+import {
+  Container,
+  TitleContainer,
+  Title,
+  ButtonContainer,
+} from "./header-preview.styles.js";
 
-const HeaderPreview = ({ idList, deleteBrands }) => {
+const HeaderPreview = ({
+  idList,
+  deleteBrands,
+  setBrandsSearchName,
+  setBrandsClearSearch,
+}) => {
   const navigate = useNavigate();
 
   /**
@@ -30,9 +44,25 @@ const HeaderPreview = ({ idList, deleteBrands }) => {
     return true;
   };
 
+  const clearFilter = () => {
+    setBrandsSearchName("");
+    setBrandsClearSearch();
+  };
+
   return (
     <Container>
-      <Title>Marcas - Lista</Title>
+      <TitleContainer>
+        <Title>Marcas - Lista</Title>
+
+        <Button
+          border="1px solid #282828"
+          color="#fff"
+          colorFont="#282828"
+          onClick={clearFilter}
+        >
+          Limpar Pesquisa
+        </Button>
+      </TitleContainer>
       <ButtonContainer>
         <Button
           border="1px solid #282828"
@@ -57,5 +87,8 @@ const HeaderPreview = ({ idList, deleteBrands }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   deleteBrands: (deleteList) => dispatch(deleteBrands(deleteList)),
+  setBrandsSearchName: (searchName) =>
+    dispatch(setBrandsSearchName(searchName)),
+  setBrandsClearSearch: () => dispatch(setBrandsClearSearch()),
 });
 export default connect(null, mapDispatchToProps)(HeaderPreview);

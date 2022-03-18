@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   totalPageNumbers: 0,
   pageNumber: 0,
   searchName: "",
+  clearSearch: false,
 };
 
 const brandsResources = (state = INITIAL_STATE, action) => {
@@ -65,6 +66,11 @@ const brandsResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchName: action.payload,
+      };
+    case BrandActionsTypes.SET_BRANDS_CLEAR_SEARCH:
+      return {
+        ...state,
+        clearSearch: !state.clearSearch,
       };
     default:
       return state;
