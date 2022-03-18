@@ -2,11 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 
 import ProductItem from "../category-item/category-item.component";
-import { setCategoriesPage } from "../../../redux/categories/category.actions";
+import {
+  setCategoriesPage,
+  setCategoriesSearchName,
+  setCategoriesSearchDescription,
+} from "../../../redux/categories/category.actions";
+import FormInput from "../../form-input/form-input.component";
 
 import {
   Container,
   TitleContainer,
+  ItemContainer,
   Item,
   Pagination,
   Page,
@@ -18,19 +24,58 @@ const CategoryDirectory = ({
   totalPageNumbers,
   setCategoriesPage,
   currentPage,
+  setCategoriesSearchName,
+  setCategoriesSearchDescription,
 }) => {
+  const [searchName, setSearchName] = React.useState("");
+  const [searchDescription, setSearchDescription] = React.useState("");
+  
   const pages = new Array(totalPageNumbers).fill(null).map((x, i) => i);
+
+  const handleChangeName = (e) => {
+    const name = e.target.value;
+
+    setSearchName(name);
+    setCategoriesSearchName(name);
+  };
+
+  const handleChangeDescripion = (e) => {
+    const description = e.target.value;
+
+    setCategoriesSearchDescription(description);
+    setSearchDescription(description);
+  };
 
   return (
     <Container>
       <TitleContainer>
-        <Item>Categoria</Item>
-        <Item>Descrição</Item>
-        <Item>Opções</Item>
+        <ItemContainer>
+          <Item>Categoria</Item>
+          <FormInput
+            name="name"
+            value={searchName}
+            onChange={handleChangeName}
+            small
+            placeholder="Buscar Categoria..."
+          />
+        </ItemContainer>
+        <ItemContainer>
+          <Item>Descrição</Item>
+          <FormInput
+            name="description"
+            value={searchDescription}
+            onChange={handleChangeDescripion}
+            small
+            placeholder="Buscar Descrição..."
+          />
+        </ItemContainer>
+        <ItemContainer>
+          <Item>Opções</Item>
+        </ItemContainer>
       </TitleContainer>
       {categories?.map(
         (categoryItem) =>
-          categoryItem._id !== 'select' && (
+          categoryItem._id !== "select" && (
             <ProductItem
               key={categoryItem._id}
               categoryItem={categoryItem}
@@ -61,7 +106,7 @@ const CategoryDirectory = ({
               : {}
           }
         >
-          proximo
+          próximo
         </Page>
       </Pagination>
     </Container>
@@ -76,6 +121,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setCategoriesPage: (currentPage) => dispatch(setCategoriesPage(currentPage)),
+  setCategoriesSearchName: (searchName) =>
+    dispatch(setCategoriesSearchName(searchName)),
+  setCategoriesSearchDescription: (searchDescription) =>
+    dispatch(setCategoriesSearchDescription(searchDescription)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryDirectory);

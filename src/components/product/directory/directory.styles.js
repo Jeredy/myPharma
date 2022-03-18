@@ -15,7 +15,7 @@ export const Container = styled.div`
 
 export const TitleContainer = styled.div`
   display: flex;
-  height: 60px;
+  height: 80px;
   align-items: center;
   justify-content: center;
   width: 98%;
@@ -25,6 +25,16 @@ export const TitleContainer = styled.div`
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.17);
 `;
 
+export const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+  flex: 33%;
+`;
+
 export const Item = styled.p`
   display: flex;
   align-items: center;
@@ -32,6 +42,7 @@ export const Item = styled.p`
   color: #686868;
   justify-content: center;
   flex: 33%;
+  max-height: 35px;
   inline-size: 130px;
   overflow-wrap: break-word;
 `;

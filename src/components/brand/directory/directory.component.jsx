@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 
 import ProductItem from "../brand-item/brand-item.component";
-import { setBrandsPage } from "../../../redux/brands/brand.actions";
+import {
+  setBrandsPage,
+  setBrandsSearchName,
+} from "../../../redux/brands/brand.actions";
+import FormInput from "../../form-input/form-input.component";
 
 import {
   Container,
   TitleContainer,
+  ItemContainer,
   Item,
   Pagination,
   Page,
@@ -18,14 +23,35 @@ const BrandDirectory = ({
   totalPageNumbers,
   setBrandsPage,
   currentPage,
+  setBrandsSearchName,
 }) => {
+  const [searchName, setSearchName] = React.useState("");
+
   const pages = new Array(totalPageNumbers).fill(null).map((x, i) => i);
+
+  const handleChangeName = (e) => {
+    const name = e.target.value;
+
+    setSearchName(name);
+    setBrandsSearchName(name);
+  };
 
   return (
     <Container>
       <TitleContainer>
-        <Item>Marca</Item>
-        <Item>Opções</Item>
+        <ItemContainer>
+          <Item>Marca</Item>
+          <FormInput
+            name="name"
+            value={searchName}
+            onChange={handleChangeName}
+            small
+            placeholder="Buscar Marca..."
+          />
+        </ItemContainer>
+        <ItemContainer>
+          <Item>Opções</Item>
+        </ItemContainer>
       </TitleContainer>
       {brands?.map(
         (brandItem) =>
@@ -75,6 +101,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setBrandsPage: (currentPage) => dispatch(setBrandsPage(currentPage)),
+  setBrandsSearchName: (searchName) =>
+    dispatch(setBrandsSearchName(searchName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BrandDirectory);

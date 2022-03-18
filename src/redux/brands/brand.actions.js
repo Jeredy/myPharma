@@ -29,3 +29,8 @@ export const setBrandsPage = (currentPage) => ({
   type: BrandActionsTypes.SET_BRANDS_PAGE,
   payload: currentPage,
 });
+
+export const setBrandsSearchName = (searchName) => ({
+  type: BrandActionsTypes.SET_BRANDS_SEARCH_NAME,
+  payload: searchName,
+});

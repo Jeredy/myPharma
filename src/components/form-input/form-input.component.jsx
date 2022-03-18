@@ -19,13 +19,16 @@ const FormInput = ({
   label,
   error = false,
   errorMessage = "",
+  small = false,
+  disabled,
   ...otherProps
 }) => (
-  <Container>
-    <Label>{label}</Label>
+  <Container small={small}>
+    {label && <Label>{label}</Label>}
     <Input
       className={`${!!error ? "error-input" : ""}`}
       onChange={handleChange}
+      small={small}
       {...otherProps}
     />
     {error && <ErrorLabel>{`*${errorMessage}`}</ErrorLabel>}

@@ -15,7 +15,7 @@ export const Container = styled.div`
 
 export const TitleContainer = styled.div`
   display: flex;
-  height: 60px;
+  height: 80px;
   align-items: center;
   justify-content: center;
   width: 98%;
@@ -24,23 +24,36 @@ export const TitleContainer = styled.div`
   -webkit-box-shadow: 0px 0px 15x 0px rgba(0, 0, 0, 0.17);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.17);
 
-  p:last-child {
-    justify-content: flex-end;
-    padding-right: 4rem;
+  div:last-child {
+    align-items: flex-end;
     flex: 20%;
+
+    p {
+      justify-content: flex-start;
+      margin-right: 0.5rem;
+    }
   }
+`;
+
+export const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+  flex: 80%;
 `;
 
 export const Item = styled.p`
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 1rem;
   color: #686868;
-  justify-content: center;
   flex: 80%;
-  max-height: 60px;
+  max-height: 35px;
   inline-size: 130px;
-  overflow-wrap: break-word;
 `;
 
 export const Pagination = styled.div`
@@ -68,7 +81,7 @@ export const Page = styled.div`
   cursor: pointer;
   border-radius: 0.1rem;
   text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  transition: .2s ease-in-out;  
+  transition: 0.2s ease-in-out;
   text-transform: capitalize;
   background: ${({ isCcurrentPage }) =>
     isCcurrentPage ? "#fff" : "rgba(24, 23, 28, 0.3)"};

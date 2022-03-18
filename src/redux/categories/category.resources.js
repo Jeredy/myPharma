@@ -3,7 +3,9 @@ import { CategoryActionsTypes } from "./category.types";
 const INITIAL_STATE = {
   categories: null,
   totalPageNumbers: 0,
-  pageNumber: 0
+  pageNumber: 0,
+  searchName: "",
+  searchDescription: "",
 };
 
 const categoriesResources = (state = INITIAL_STATE, action) => {
@@ -59,6 +61,16 @@ const categoriesResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         pageNumber: action.payload,
+      };
+    case CategoryActionsTypes.SET_CATEGORIES_SEARCH_NAME:
+      return {
+        ...state,
+        searchName: action.payload,
+      };
+    case CategoryActionsTypes.SET_CATEGORIES_SEARCH_DESCRIPTION:
+      return {
+        ...state,
+        searchDescription: action.payload,
       };
     default:
       return state;

@@ -29,3 +29,13 @@ export const setCategoriesPage = (currentPage) => ({
   type: CategoryActionsTypes.SET_CATEGORIES_PAGE,
   payload: currentPage,
 });
+
+export const setCategoriesSearchName = (searchName) => ({
+  type: CategoryActionsTypes.SET_CATEGORIES_SEARCH_NAME,
+  payload: searchName,
+});
+
+export const setCategoriesSearchDescription = (searchDescription) => ({
+  type: CategoryActionsTypes.SET_CATEGORIES_SEARCH_DESCRIPTION,
+  payload: searchDescription,
+});

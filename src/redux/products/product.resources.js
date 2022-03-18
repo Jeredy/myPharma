@@ -4,6 +4,9 @@ const INITIAL_STATE = {
   products: null,
   pageNumber: 0,
   totalPageNumbers: 0,
+  searchName: "",
+  searchCategory: "",
+  searchBrand: "",
 };
 
 const productsResources = (state = INITIAL_STATE, action) => {
@@ -51,6 +54,21 @@ const productsResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         pageNumber: action.payload,
+      };
+    case ProductActionsTypes.SET_PRODUCTS_SEARCH_NAME:
+      return {
+        ...state,
+        searchName: action.payload,
+      };
+    case ProductActionsTypes.SET_PRODUCTS_SEARCH_CATEGORY:
+      return {
+        ...state,
+        searchCategory: action.payload,
+      };
+    case ProductActionsTypes.SET_PRODUCTS_SEARCH_BRAND:
+      return {
+        ...state,
+        searchBrand: action.payload,
       };
     default:
       return state;

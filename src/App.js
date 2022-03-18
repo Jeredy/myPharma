@@ -34,6 +34,12 @@ const App = ({
   setCategoriesTotalPages,
   brandsPageNumber,
   setBrandsTotalPages,
+  categoriesSearchName,
+  categoriesSearchDescription,
+  brandsSearchName,
+  productSearchName,
+  productSearchCategory,
+  productSearchBrand,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => {
@@ -42,11 +48,15 @@ const App = ({
 
   const getProducts = async () => {
     try {
-      await axios.get(`/product?page=${productsPageNumber}`).then((res) => {
-        const { products, totalPages } = res.data;
-        setProductsTotalPages(totalPages);
-        setProducts(products);
-      });
+      await axios
+        .get(
+          `/product?page=${productsPageNumber}&&name=${productSearchName}&&category=${productSearchCategory}&&brand=${productSearchBrand}`
+        )
+        .then((res) => {
+          const { products, totalPages } = res.data;
+          setProductsTotalPages(totalPages);
+          setProducts(products);
+        });
     } catch (e) {
       console.log("error: ", e);
     }
@@ -56,15 +66,24 @@ const App = ({
     // if (currentAdmin === null) {
     getProducts();
     // }
-  }, [productsPageNumber]);
+  }, [
+    productsPageNumber,
+    productSearchName,
+    productSearchCategory,
+    productSearchBrand,
+  ]);
 
   const getCategories = async () => {
     try {
-      await axios.get(`/category?page=${categoriesPageNumber}`).then((res) => {
-        const { categories, totalPages } = res.data;
-        setCategoriesTotalPages(totalPages);
-        setCategories(categories);
-      });
+      await axios
+        .get(
+          `/category?page=${categoriesPageNumber}&&name=${categoriesSearchName}&&description=${categoriesSearchDescription}`
+        )
+        .then((res) => {
+          const { categories, totalPages } = res.data;
+          setCategoriesTotalPages(totalPages);
+          setCategories(categories);
+        });
     } catch (e) {
       console.log("error: ", e);
     }
@@ -74,16 +93,18 @@ const App = ({
     // if (currentAdmin === null) {
     getCategories();
     // }
-  }, [categoriesPageNumber]);
+  }, [categoriesPageNumber, categoriesSearchName, categoriesSearchDescription]);
 
   const getBrands = async () => {
     try {
-      await axios.get(`/brand?page=${brandsPageNumber}`).then((res) => {
-        const { brands, totalPages } = res.data;
-        console.log(brands, totalPages);
-        setBrandsTotalPages(totalPages);
-        setBrands(brands);
-      });
+      await axios
+        .get(`/brand?page=${brandsPageNumber}&&name=${brandsSearchName}`)
+        .then((res) => {
+          const { brands, totalPages } = res.data;
+          console.log(brands, totalPages);
+          setBrandsTotalPages(totalPages);
+          setBrands(brands);
+        });
     } catch (e) {
       console.log("error: ", e);
     }
@@ -93,7 +114,7 @@ const App = ({
     // if (currentAdmin === null) {
     getBrands();
     // }
-  }, [brandsPageNumber]);
+  }, [brandsPageNumber, brandsSearchName]);
 
   // if (currentAdmin === null) {
   //   return <SignInSignUp />;
@@ -141,6 +162,12 @@ const mapStateToProps = (state) => ({
   productsPageNumber: state.product.pageNumber,
   categoriesPageNumber: state.category.pageNumber,
   brandsPageNumber: state.brand.pageNumber,
+  categoriesSearchName: state.category.searchName,
+  categoriesSearchDescription: state.category.searchDescription,
+  brandsSearchName: state.brand.searchName,
+  productSearchName: state.product.searchName,
+  productSearchCategory: state.product.searchCategory,
+  productSearchBrand: state.product.searchBrand,
 });
 
 const mapDispatchToProps = (dispatch) => ({

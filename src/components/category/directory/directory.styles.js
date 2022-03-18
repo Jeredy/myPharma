@@ -15,7 +15,7 @@ export const Container = styled.div`
 
 export const TitleContainer = styled.div`
   display: flex;
-  height: 60px;
+  height: 80px;
   align-items: center;
   justify-content: center;
   width: 98%;
@@ -23,6 +23,25 @@ export const TitleContainer = styled.div`
   border-radius: 2px;
   -webkit-box-shadow: 0px 0px 15x 0px rgba(0, 0, 0, 0.17);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.17);
+
+  div:last-child {
+    align-items: flex-end;
+
+    p {
+      justify-content: flex-start;
+      margin-right: .5rem;
+    }
+  }
+`;
+
+export const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+  flex: 33%;
 `;
 
 export const Item = styled.p`
@@ -31,9 +50,9 @@ export const Item = styled.p`
   font-size: 1rem;
   color: #686868;
   justify-content: center;
-  flex: 33%;
+  max-height: 60px;
   inline-size: 130px;
-  overflow-wrap: break-word;
+  margin-bottom: 0.2rem;
 `;
 
 export const Pagination = styled.div`
@@ -61,7 +80,7 @@ export const Page = styled.div`
   cursor: pointer;
   border-radius: 0.1rem;
   text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  transition: .2s ease-in-out;  
+  transition: 0.2s ease-in-out;
   text-transform: capitalize;
   background: ${({ isCcurrentPage }) =>
     isCcurrentPage ? "#fff" : "rgba(24, 23, 28, 0.3)"};

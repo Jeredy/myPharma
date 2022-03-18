@@ -3,7 +3,8 @@ import { BrandActionsTypes } from "./brand.types";
 const INITIAL_STATE = {
   brands: null,
   totalPageNumbers: 0,
-  pageNumber: 0
+  pageNumber: 0,
+  searchName: "",
 };
 
 const brandsResources = (state = INITIAL_STATE, action) => {
@@ -59,6 +60,11 @@ const brandsResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         pageNumber: action.payload,
+      };
+    case BrandActionsTypes.SET_BRANDS_SEARCH_NAME:
+      return {
+        ...state,
+        searchName: action.payload,
       };
     default:
       return state;
