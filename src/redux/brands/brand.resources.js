@@ -2,19 +2,21 @@ import { BrandActionsTypes } from "./brand.types";
 
 const INITIAL_STATE = {
   brands: null,
+  totalPageNumbers: 0,
+  pageNumber: 0
 };
 
 const brandsResources = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case BrandActionsTypes.SET_BRANDS:
       const settingBrands = action.payload;
-      
+
       settingBrands.unshift({
         _id: "select",
         name: "Selecionar..",
         description: "select",
       });
-      
+
       return {
         ...state,
         brands: settingBrands,
@@ -47,6 +49,16 @@ const brandsResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         brands: newBrandList,
+      };
+    case BrandActionsTypes.SET_BRANDS_TOTAL_PAGES:
+      return {
+        ...state,
+        totalPageNumbers: action.payload,
+      };
+    case BrandActionsTypes.SET_BRANDS_PAGE:
+      return {
+        ...state,
+        pageNumber: action.payload,
       };
     default:
       return state;

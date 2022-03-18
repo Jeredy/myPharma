@@ -2,19 +2,21 @@ import { CategoryActionsTypes } from "./category.types";
 
 const INITIAL_STATE = {
   categories: null,
+  totalPageNumbers: 0,
+  pageNumber: 0
 };
 
 const categoriesResources = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CategoryActionsTypes.SET_CATEGORIES:
       const settingCategories = action.payload;
-      
-      settingCategories.unshift({
+
+      settingCategories?.unshift({
         _id: "select",
         name: "Selecionar..",
         description: "select",
       });
-      
+
       return {
         ...state,
         categories: settingCategories,
@@ -47,6 +49,16 @@ const categoriesResources = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         categories: newCategoryList,
+      };
+    case CategoryActionsTypes.SET_CATEGORIES_TOTAL_PAGES:
+      return {
+        ...state,
+        totalPageNumbers: action.payload,
+      };
+    case CategoryActionsTypes.SET_CATEGORIES_PAGE:
+      return {
+        ...state,
+        pageNumber: action.payload,
       };
     default:
       return state;

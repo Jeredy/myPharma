@@ -19,3 +19,13 @@ export const deleteCategories = (category) => ({
   type: CategoryActionsTypes.DELETE_CATEGORIES,
   payload: category,
 });
+
+export const setCategoriesTotalPages = (totalPages) => ({
+  type: CategoryActionsTypes.SET_CATEGORIES_TOTAL_PAGES,
+  payload: totalPages,
+});
+
+export const setCategoriesPage = (currentPage) => ({
+  type: CategoryActionsTypes.SET_CATEGORIES_PAGE,
+  payload: currentPage,
+});

@@ -13,8 +13,11 @@ import {
   setProducts,
   setProductsTotalPages,
 } from "./redux/products/product.actions";
-import { setCategories } from "./redux/categories/category.actions";
-import { setBrands } from "./redux/brands/brand.actions";
+import {
+  setCategories,
+  setCategoriesTotalPages,
+} from "./redux/categories/category.actions";
+import { setBrands, setBrandsTotalPages } from "./redux/brands/brand.actions";
 import axios from "./api/api";
 
 import GlobalStyle from "./globalStyles";
@@ -27,6 +30,10 @@ const App = ({
   setBrands,
   productsPageNumber,
   setProductsTotalPages,
+  categoriesPageNumber,
+  setCategoriesTotalPages,
+  brandsPageNumber,
+  setBrandsTotalPages,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => {
@@ -46,43 +53,51 @@ const App = ({
   };
 
   React.useEffect(() => {
-    if (currentAdmin === null) {
-      getProducts();
-    }
+    // if (currentAdmin === null) {
+    getProducts();
+    // }
   }, [productsPageNumber]);
 
   const getCategories = async () => {
     try {
-      await axios.get("/category").then((res) => {
-        const data = res.data;
-        setCategories(data);
+      await axios.get(`/category?page=${categoriesPageNumber}`).then((res) => {
+        const { categories, totalPages } = res.data;
+        setCategoriesTotalPages(totalPages);
+        setCategories(categories);
       });
     } catch (e) {
       console.log("error: ", e);
     }
   };
+
+  React.useEffect(() => {
+    // if (currentAdmin === null) {
+    getCategories();
+    // }
+  }, [categoriesPageNumber]);
 
   const getBrands = async () => {
     try {
-      await axios.get("/brand").then((res) => {
-        const data = res.data;
-        setBrands(data);
+      await axios.get(`/brand?page=${brandsPageNumber}`).then((res) => {
+        const { brands, totalPages } = res.data;
+        console.log(brands, totalPages);
+        setBrandsTotalPages(totalPages);
+        setBrands(brands);
       });
     } catch (e) {
       console.log("error: ", e);
     }
   };
 
-  const setReduxData = () => {
-    getCategories();
+  React.useEffect(() => {
+    // if (currentAdmin === null) {
     getBrands();
-  };
+    // }
+  }, [brandsPageNumber]);
 
   // if (currentAdmin === null) {
   //   return <SignInSignUp />;
   // }
-
-  setReduxData();
 
   return (
     <Container>
@@ -124,6 +139,8 @@ const App = ({
 const mapStateToProps = (state) => ({
   currentAdmin: state.admin.currentAdmin,
   productsPageNumber: state.product.pageNumber,
+  categoriesPageNumber: state.category.pageNumber,
+  brandsPageNumber: state.brand.pageNumber,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -132,6 +149,10 @@ const mapDispatchToProps = (dispatch) => ({
   setBrands: (brands) => dispatch(setBrands(brands)),
   setProductsTotalPages: (productsTotalPages) =>
     dispatch(setProductsTotalPages(productsTotalPages)),
+  setCategoriesTotalPages: (categoriesTotalPages) =>
+    dispatch(setCategoriesTotalPages(categoriesTotalPages)),
+  setBrandsTotalPages: (brandsTotalPages) =>
+    dispatch(setBrandsTotalPages(brandsTotalPages)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

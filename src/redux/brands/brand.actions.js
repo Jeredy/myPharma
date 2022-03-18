@@ -19,3 +19,13 @@ export const deleteBrands = (brand) => ({
   type: BrandActionsTypes.DELETE_BRANDS,
   payload: brand,
 });
+
+export const setBrandsTotalPages = (totalPages) => ({
+  type: BrandActionsTypes.SET_BRANDS_TOTAL_PAGES,
+  payload: totalPages,
+});
+
+export const setBrandsPage = (currentPage) => ({
+  type: BrandActionsTypes.SET_BRANDS_PAGE,
+  payload: currentPage,
+});

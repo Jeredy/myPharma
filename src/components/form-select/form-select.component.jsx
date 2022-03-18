@@ -1,7 +1,5 @@
 import React from "react";
 
-// import mask from "../mask";
-
 import { Container, Select, Label, Option } from "./form-select.styles";
 
 /**
@@ -24,7 +22,6 @@ const FormSelect = ({
   selected,
 }) => (
   <Container>
-    {console.log(options)}
     <Label>{label}</Label>
     <Select
       as="select"
