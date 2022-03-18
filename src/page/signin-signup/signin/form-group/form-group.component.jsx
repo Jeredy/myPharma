@@ -18,6 +18,7 @@ import { Button } from "../../../../components/button/button.styles";
 import { setCurrentAdmin } from "../../../../redux/admin/admin.actions";
 
 const FormGroup = ({ setCurrentAdmin }) => {
+
   const onSubmit = async (values) => {
     try {
       const {
@@ -25,9 +26,8 @@ const FormGroup = ({ setCurrentAdmin }) => {
           admin: { _id, name, email },
         },
       } = await axios.post("/signin", values);
-      
+
       setCurrentAdmin({ _id, name, email });
-      return console.log("logged successfully");
     } catch (err) {
       console.log(err);
     }

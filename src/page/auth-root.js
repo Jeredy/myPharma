@@ -3,8 +3,7 @@ import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 const AuthRoute = ({ children, currentAdmin }) => {
-  // return currentAdmin === null ? <Navigate to="/" replace /> : children;
-  return children;
+  return currentAdmin === null ? <Navigate to="/" replace /> : children;
 };
 
 const mapStateToProps = (state) => ({

@@ -115,41 +115,45 @@ const App = ({
     // }
   }, [brandsPageNumber, brandsSearchName]);
 
-  // if (currentAdmin === null) {
-  //   return <SignInSignUp />;
-  // }
+  console.log(currentAdmin);
 
   return (
     <Container>
       <GlobalStyle />
-      <Dropdown isOpen={isOpen} toggle={toggle} />
+      {currentAdmin !== null && <Dropdown isOpen={isOpen} toggle={toggle} />}
       <SubContainer>
-        <Header toggle={toggle} />
+        {currentAdmin !== null && <Header toggle={toggle} />}
         <Routes>
-          <Route
-            path="/*"
-            element={
-              <AuthRoute>
-                <ProductRoot />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/category/*"
-            element={
-              <AuthRoute>
-                <CategorytRoot />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/brand/*"
-            element={
-              <AuthRoute>
-                <BrandRoot />
-              </AuthRoute>
-            }
-          />
+          {currentAdmin === null ? (
+            <Route path="/*" element={<SignInSignUp />} />
+          ) : (
+            <>
+              <Route
+                path="/*"
+                element={
+                  <AuthRoute>
+                    <ProductRoot />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/category/*"
+                element={
+                  <AuthRoute>
+                    <CategorytRoot />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/brand/*"
+                element={
+                  <AuthRoute>
+                    <BrandRoot />
+                  </AuthRoute>
+                }
+              />
+            </>
+          )}
         </Routes>
       </SubContainer>
     </Container>
