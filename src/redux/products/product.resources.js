@@ -1,6 +1,6 @@
 import { ProductActionsTypes } from "./product.types";
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   products: null,
   pageNumber: 0,
   totalPageNumbers: 0,
