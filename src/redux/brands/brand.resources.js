@@ -1,6 +1,6 @@
 import { BrandActionsTypes } from "./brand.types";
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   brands: null,
   totalPageNumbers: 0,
   pageNumber: 0,
@@ -16,7 +16,6 @@ const brandsResources = (state = INITIAL_STATE, action) => {
       settingBrands.unshift({
         _id: "select",
         name: "Selecionar..",
-        description: "select",
       });
 
       return {
