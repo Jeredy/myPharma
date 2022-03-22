@@ -5,11 +5,7 @@ import { connect } from "react-redux";
 
 import FormInput from "../../../form-input/form-input.component";
 import axios from "../../../../api/api";
-import {
-  addBrand,
-  updateBrand,
-} from "../../../../redux/brands/brand.actions";
-
+import { addBrand, updateBrand } from "../../../../redux/brands/brand.actions";
 
 import { Container, FormContainer } from "./form-group.styles";
 
@@ -22,16 +18,16 @@ const BrandFormGroup = ({ state, addBrand, updateBrand }) => {
     try {
       if (!!state) {
         values._id = _id;
-        
+
         await axios.put("/brand/update", values);
         updateBrand(values);
-        return navigate('/brand');
+        return navigate("/brand");
       }
 
-      await axios.post("/brand/store", values);
-      addBrand(values);
+      const { data } = await axios.post("/brand/store", values);
+      addBrand(data.response);
 
-      navigate('/brand');
+      navigate("/brand");
     } catch (err) {
       console.log(err);
     }

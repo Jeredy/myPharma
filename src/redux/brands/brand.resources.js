@@ -23,20 +23,21 @@ const brandsResources = (state = INITIAL_STATE, action) => {
         ...state,
         brands: settingBrands,
       };
-    case BrandActionsTypes.ADD_BRANDS:
+    case BrandActionsTypes.ADD_BRAND:
       return {
         ...state,
         brands: [...state.brands, action.payload],
       };
-    case BrandActionsTypes.UPDATE_BRANDS:
-      const categoryIndex = state.brands.findIndex(
+    case BrandActionsTypes.UPDATE_BRAND:
+      const brandIndex = state.brands.findIndex(
         ({ _id }) => _id == action.payload._id
       );
 
-      if (categoryIndex === -1) return { ...state };
+      if (brandIndex === -1) return { ...state };
 
       const updatedBrandList = state.brands;
-      updatedBrandList.splice(categoryIndex, 1, action.payload);
+      updatedBrandList.splice(brandIndex, 1, action.payload);
+
 
       return {
         ...state,

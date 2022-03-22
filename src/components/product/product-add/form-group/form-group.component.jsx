@@ -17,7 +17,13 @@ import {
   FormSubContainer,
 } from "./form-group.styles";
 
-const ProductFormGroup = ({ state, brands, categoriesList, addProduct, updateProduct }) => {
+const ProductFormGroup = ({
+  state,
+  brands,
+  categoriesList,
+  addProduct,
+  updateProduct,
+}) => {
   const { _id, category, brand, name, description, price, inventory } =
     state ?? "";
 
@@ -36,8 +42,8 @@ const ProductFormGroup = ({ state, brands, categoriesList, addProduct, updatePro
         return navigate(-1);
       }
 
-      await axios.post("/product/store", values);
-      addProduct(values);
+      const { data } = await axios.post("/product/store", values);
+      addProduct(data.response);
 
       navigate(-1);
     } catch (err) {
@@ -64,16 +70,19 @@ const ProductFormGroup = ({ state, brands, categoriesList, addProduct, updatePro
           if (!values.description) {
             errors.description = "Required";
           }
+          if (values.description.length > 100) {
+            errors.description = "Max length 100 Characters";
+          }
           if (!values.category) {
             errors.category = "Required";
           }
-          if (values.category === 'Selecionar..') {
+          if (values.category === "Selecionar..") {
             errors.category = "Required";
           }
           if (!values.brand) {
             errors.brand = "Required";
           }
-          if (values.brand === 'Selecionar..') {
+          if (values.brand === "Selecionar..") {
             errors.brand = "Required";
           }
           if (!values.price) {

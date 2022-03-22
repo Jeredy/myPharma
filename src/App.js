@@ -115,8 +115,6 @@ const App = ({
     // }
   }, [brandsPageNumber, brandsSearchName]);
 
-  console.log(currentAdmin);
-
   return (
     <Container>
       <GlobalStyle />

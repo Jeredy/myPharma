@@ -20,14 +20,14 @@ const CategoryFormGroup = ({ state, addCategory, updateCategory }) => {
     try {
       if (!!state) {
         values._id = _id;
-        
+
         await axios.put("/category/update", values);
         updateCategory(values);
         return navigate(-1);
       }
 
-      await axios.post("/category/store", values);
-      addCategory(values);
+      const { data } = await axios.post("/category/store", values);
+      addCategory(data.response);
 
       navigate(-1);
     } catch (err) {
@@ -46,6 +46,9 @@ const CategoryFormGroup = ({ state, addCategory, updateCategory }) => {
           }
           if (!values.description) {
             errors.description = "Required";
+          }
+          if (values.description.length > 100) {
+            errors.description = "Max length 100 Characters";
           }
           return errors;
         }}

@@ -60,5 +60,5 @@ export const Item = styled.p`
   justify-content: center;
   flex: 33%;  
   inline-size: 130px;
-  overflow-wrap: break-word;
+  max-lines: 1;
 `;

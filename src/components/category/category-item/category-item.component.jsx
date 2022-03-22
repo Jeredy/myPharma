@@ -54,7 +54,9 @@ const CategoryItem = ({
       </Checkbox>
       <Product>
         <Item>{name}</Item>
-        <Item>{description}</Item>
+        <Item numberOfLines={2} >
+          {description}
+        </Item>
         <Item>
           <ButtonLink
             to="add-category"
