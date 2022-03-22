@@ -58,9 +58,9 @@ const CategoryHeaderPreview = ({
         <Title>Categorias - Lista</Title>
 
         <Button
-          border="1px solid #282828"
+          border="1px solid #999"
           color="#fff"
-          colorFont="#282828"
+          colorFont="#192841"
           onClick={clearFilter}
         >
           Limpar Pesquisa
@@ -68,9 +68,9 @@ const CategoryHeaderPreview = ({
       </TitleContainer>
       <ButtonContainer>
         <Button
-          border="1px solid #282828"
-          color="#282828"
+          border="1px solid #192841"
           colorFont="#fff"
+          color="#192841"
           onClick={() => navigate("add-category")}
         >
           ADICIONAR
@@ -78,7 +78,7 @@ const CategoryHeaderPreview = ({
         <Button
           border="1px solid #282828"
           color="#fff"
-          colorFont="#282828"
+          colorFont="#192841"
           onClick={() => deleteCategoryApi(idList)}
         >
           DELETAR

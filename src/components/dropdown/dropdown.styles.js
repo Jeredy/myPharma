@@ -14,7 +14,7 @@ const LinkContainer = css`
   transition: 0.2s ease-in-out;
   text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   height: 45px;
-  margin: 0.5rem 0.5rem;
+  margin: 0.2rem 0.5rem;
 `;
 
 export const DropdownContainer = styled.div`
@@ -78,7 +78,7 @@ export const DropdownMenu = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem 0rem;
   max-width: ${({ isOpen }) => (isOpen ? "50px" : "150px")};
 `;
 

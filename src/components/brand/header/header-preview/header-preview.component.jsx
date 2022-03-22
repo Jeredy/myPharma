@@ -55,9 +55,9 @@ const HeaderPreview = ({
         <Title>Marcas - Lista</Title>
 
         <Button
-          border="1px solid #282828"
+          border="1px solid #999"
           color="#fff"
-          colorFont="#282828"
+          colorFont="#192841"
           onClick={clearFilter}
         >
           Limpar Pesquisa
@@ -65,9 +65,9 @@ const HeaderPreview = ({
       </TitleContainer>
       <ButtonContainer>
         <Button
-          border="1px solid #282828"
-          color="#282828"
+          border="1px solid #192841"
           colorFont="#fff"
+          color="#192841"
           onClick={() => navigate("add-brand")}
         >
           ADICIONAR
@@ -75,7 +75,7 @@ const HeaderPreview = ({
         <Button
           border="1px solid #282828"
           color="#fff"
-          colorFont="#282828"
+          colorFont="#192841"
           onClick={() => deleteProductApi(idList)}
         >
           DELETAR

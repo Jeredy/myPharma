@@ -37,11 +37,10 @@ const BrandDirectory = ({
     setBrandsSearchName(name);
   };
 
-  
   React.useEffect(() => {
     setSearchName("");
   }, [clearSearch]);
-  
+
   return (
     <Container>
       <TitleContainer>
@@ -60,9 +59,10 @@ const BrandDirectory = ({
         </ItemContainer>
       </TitleContainer>
       {brands?.map(
-        (brandItem) =>
+        (brandItem, index) =>
           brandItem._id !== "select" && (
             <ProductItem
+              toggleColor={index % 2 !== 0}
               key={brandItem._id}
               brandItem={brandItem}
               checkboxDeleteList={checkboxDeleteList}

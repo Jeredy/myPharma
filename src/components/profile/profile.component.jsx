@@ -1,5 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentAdmin } from "../../redux/admin/admin.selector";
+
 import {
   Container,
   Subcontainer,
@@ -21,8 +24,8 @@ const Profile = ({ currentAdmin }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentAdmin: state.admin.currentAdmin,
+const mapStateToProps = createStructuredSelector({
+  currentAdmin: selectCurrentAdmin,
 });
 
 export default connect(mapStateToProps)(Profile);

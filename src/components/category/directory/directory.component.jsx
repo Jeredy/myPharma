@@ -80,10 +80,11 @@ const CategoryDirectory = ({
         </ItemContainer>
       </TitleContainer>
       {categories?.map(
-        (categoryItem) =>
+        (categoryItem, index) =>
           categoryItem._id !== "select" && (
             <ProductItem
               key={categoryItem._id}
+              toggleColor={index % 2 == 0}
               categoryItem={categoryItem}
               checkboxDeleteList={checkboxDeleteList}
             />

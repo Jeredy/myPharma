@@ -111,18 +111,18 @@ const FormGroup = () => {
       </Formik>
       <ButtonContainer>
         <Button
-          border="1px solid #282828"
-          color="#282828"
+          border="1px solid #192841"
           colorFont="#fff"
+          color="#192841"
           fullscreen
           onClick={submiteClick}
         >
           Registrar
         </Button>
         <Button
-          border="1px solid #282828"
-          color="#fff"
-          colorFont="#282828"
+         border="1px solid #282828"
+         color="#fff"
+         colorFont="#192841"
           fullscreen
           onClick={() => navigate(-1)}
         >

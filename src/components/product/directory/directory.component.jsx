@@ -100,11 +100,12 @@ const ProductDirectory = ({
           <Item>Opções</Item>
         </ItemContainer>
       </TitleContainer>
-      {products?.map((productItem) => (
+      {products?.map((productItem, index) => (
         <ProductItem
           key={productItem._id}
           productItem={productItem}
           checkboxDeleteList={checkboxDeleteList}
+          toggleColor={index % 2 !== 0}
         />
       ))}
       <Pagination>
@@ -115,9 +116,10 @@ const ProductDirectory = ({
         >
           anterior
         </Page>
-        {pages.map((pageNumber) => (
+        {pages.map((pageNumber, index) => (
           <Page
             onClick={() => setProductsPage(pageNumber)}
+            key={index}
             isCcurrentPage={pageNumber === currentPage}
           >
             {pageNumber + 1}

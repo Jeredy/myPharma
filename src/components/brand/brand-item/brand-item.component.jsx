@@ -14,7 +14,12 @@ import {
   ButtonLink,
 } from "./brand-item.styles.js";
 
-const BrandItem = ({ brandItem: { _id, name }, checkboxDeleteList, deleteBrands}) => {
+const BrandItem = ({
+  brandItem: { _id, name },
+  checkboxDeleteList,
+  deleteBrands,
+  toggleColor,
+}) => {
   const [checkbox, setCheckbox] = React.useState(false);
 
   const toggleCheckbox = () => {
@@ -26,7 +31,7 @@ const BrandItem = ({ brandItem: { _id, name }, checkboxDeleteList, deleteBrands}
    * @param {array} id
    * @return boolean
    */
-   const deleteBrandApi = async (id) => {
+  const deleteBrandApi = async (id) => {
     try {
       await axios.delete("/brand/delete", {
         data: {
@@ -41,7 +46,7 @@ const BrandItem = ({ brandItem: { _id, name }, checkboxDeleteList, deleteBrands}
   };
 
   return (
-    <Container>
+    <Container toggleColor={toggleColor}>
       <Checkbox
         onClick={() => {
           toggleCheckbox(_id);
@@ -60,13 +65,13 @@ const BrandItem = ({ brandItem: { _id, name }, checkboxDeleteList, deleteBrands}
               name,
             }}
           >
-            <Button color="green">Edit</Button>
+            <Button color="#035956">Edit</Button>
           </ButtonLink>
           <Button
             color="#fff"
-            colorFont="#f31"
-            border="1px solid #f31"
-            onClick={() => deleteBrandApi(_id)} 
+            colorFont="#b80f0a"
+            border="1px solid #b80f0a"
+            onClick={() => deleteBrandApi(_id)}
           >
             Delete
           </Button>
@@ -75,7 +80,6 @@ const BrandItem = ({ brandItem: { _id, name }, checkboxDeleteList, deleteBrands}
     </Container>
   );
 };
-
 
 const mapDispatchToProps = (dispatch) => ({
   deleteBrands: (deleteList) => dispatch(deleteBrands(deleteList)),

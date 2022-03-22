@@ -17,6 +17,7 @@ const CategoryItem = ({
   categoryItem: { _id, description, name },
   checkboxDeleteList,
   deleteCategories,
+  toggleColor,
 }) => {
   const [checkbox, setCheckbox] = React.useState(false);
   const toggleCheckbox = () => {
@@ -43,7 +44,7 @@ const CategoryItem = ({
   };
 
   return (
-    <Container>
+    <Container toggleColor={toggleColor}>
       <Checkbox
         onClick={() => {
           toggleCheckbox(_id);
@@ -54,9 +55,7 @@ const CategoryItem = ({
       </Checkbox>
       <Product>
         <Item>{name}</Item>
-        <Item numberOfLines={2} >
-          {description}
-        </Item>
+        <Item numberOfLines={2}>{description}</Item>
         <Item>
           <ButtonLink
             to="add-category"
@@ -66,12 +65,12 @@ const CategoryItem = ({
               description,
             }}
           >
-            <Button color="green">Edit</Button>
+            <Button color="#035956">Edit</Button>
           </ButtonLink>
           <Button
             color="#fff"
-            colorFont="#f31"
-            border="1px solid #f31"
+            colorFont="#b80f0a"
+            border="1px solid #b80f0a"
             onClick={() => deleteCategoryApi(_id)}
           >
             Delete

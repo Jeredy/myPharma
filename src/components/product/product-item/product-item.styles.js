@@ -13,7 +13,7 @@ export const Container = styled.div`
   -webkit-box-shadow: 0px 0px 15x 0px rgba(0, 0, 0, 0.17);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.17);
   margin-top: 0.1rem;
-  background: #fff;
+  background: ${({ toggleColor }) => (toggleColor ? "#f7f7f7" : "#fff")};
 
   @media (max-width: 480px) {
     min-width: 170px;
@@ -46,15 +46,22 @@ export const Product = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+
+   &:hover {
+    p {
+      color: #282828;
+    }
+  }
 `;
 
 export const Item = styled.p`
   display: flex;
   align-items: center;
   font-size: 1rem;
-  color: #282828;
   justify-content: center;
   flex: 33%;
   inline-size: 130px;
-  overflow-wrap: break-word;
+  color: #484848;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  text-transform: capitalize;
 `;

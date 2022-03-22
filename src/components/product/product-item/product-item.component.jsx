@@ -13,6 +13,7 @@ import { deleteProducts } from "../../../redux/products/product.actions";
 
 const ProductItem = ({
   productItem: { _id, category, brand, name, description, price, inventory },
+  toggleColor,
   checkboxDeleteList,
   deleteProducts,
 }) => {
@@ -42,7 +43,7 @@ const ProductItem = ({
   };
 
   return (
-    <Container>
+    <Container toggleColor={toggleColor}>
       <Checkbox
         onClick={() => {
           toggleCheckbox(_id);
@@ -68,12 +69,12 @@ const ProductItem = ({
               inventory,
             }}
           >
-            <Button color="green">Edit</Button>
+            <Button color="#035956">Edit</Button>
           </ButtonLink>
           <Button
             color="#fff"
-            colorFont="#f31"
-            border="1px solid #f31"
+            colorFont="#b80f0a"
+            border="1px solid #b80f0a"
             onClick={() => deleteProductApi(_id)}
           >
             Delete

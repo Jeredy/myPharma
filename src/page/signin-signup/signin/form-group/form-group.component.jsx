@@ -104,9 +104,9 @@ const FormGroup = ({ setCurrentAdmin }) => {
       <ForgotPassword>Esqueceu a senha?</ForgotPassword>
       <ButtonContainer>
         <Button
-          border="1px solid #282828"
-          color="#282828"
+          border="1px solid #192841"
           colorFont="#fff"
+          color="#192841"
           fullscreen
           onClick={submiteClick}
         >
@@ -116,7 +116,7 @@ const FormGroup = ({ setCurrentAdmin }) => {
           <Button
             border="1px solid #282828"
             color="#fff"
-            colorFont="#282828"
+            colorFont="#192841"
             fullscreen
           >
             Criar Conta

@@ -46,11 +46,11 @@ const NavLink = css`
 `;
 
 export const Title = styled.h1`
-  color: #383838;
+  color: #484848;
   font-size: 1.7rem;
   font-weight: 600;
 
-  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 `;
 
 export const NavMenu = styled.div`

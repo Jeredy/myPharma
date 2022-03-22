@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Button = styled.div`
-  background: ${({ color }) => (color ? color : "#17181c")};
+  background: ${({ color }) => (color ? color : "#192841")};
   white-space: nowrap;
   outline: none;
   border: none;
@@ -21,12 +21,15 @@ export const Button = styled.div`
   font-weight: 400;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
   border-radius: 2px;
+  box-shadow: 0px 1px 1px #999;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
 
   &:hover {
     background: ${({ border, colorFont }) => (border ? colorFont : "#fff")};
     border: ${({ border, color }) => !border && `1px solid ${color}`};
     color: ${({ colorFont, color }) => (color ? color : colorFont)};
-    box-shadow: 0px 1px 2px #999;
+    box-shadow: 0px 1px 3px #999;
     cursor: pointer;
   }
 `;
