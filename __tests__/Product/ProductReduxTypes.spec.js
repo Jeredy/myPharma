@@ -1,4 +1,5 @@
-import { ProductActionsTypes } from "../src/redux/products/product.types";
+import { ProductActionsTypes } from "../../src/redux/products/product.types";
+
 describe("Testing Product Types - Redux", () => {
   it("Should return a action type SET_PRODUCTS", () => {
     expect(ProductActionsTypes.SET_PRODUCTS).toEqual("SET_PRODUCTS");

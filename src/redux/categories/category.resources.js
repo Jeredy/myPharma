@@ -1,6 +1,6 @@
 import { CategoryActionsTypes } from "./category.types";
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   categories: null,
   totalPageNumbers: 0,
   pageNumber: 0,

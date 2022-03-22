@@ -1,7 +1,7 @@
-import { ProductActionsTypes } from "../src/redux/products/product.types";
+import { ProductActionsTypes } from "../../src/redux/products/product.types";
 import reducer, {
   INITIAL_STATE,
-} from "../src/redux/products/product.resources";
+} from "../../src/redux/products/product.resources";
 
 describe("Testing Product Reducers - Redux", () => {
   it("Should return the INITIAL_STATE with no changes", () => {

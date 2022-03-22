@@ -1,10 +1,10 @@
-import { ProductActionsTypes } from "../src/redux/products/product.types";
+import { ProductActionsTypes } from "../../src/redux/products/product.types";
 import {
   setProducts,
   addProduct,
   updateProduct,
   deleteProducts,
-} from "../src/redux/products/product.actions";
+} from "../../src/redux/products/product.actions";
 
 describe("Testing Product Actions - Redux", () => {
   describe("Testing Type Values", () => {
