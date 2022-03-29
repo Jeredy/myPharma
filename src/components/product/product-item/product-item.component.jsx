@@ -4,8 +4,14 @@ import {
   Container,
   Checkbox,
   Product,
+  ItemContainer,
   Item,
   ButtonLink,
+  CheckboxFull,
+  CheckboxEmpty,
+  ButtonsOptions,
+  DotsContainer,
+  Dots,
 } from "./product-item.styles.js";
 import { Button } from "../../button/button.styles";
 import axios from "../../../api/api";
@@ -18,6 +24,7 @@ const ProductItem = ({
   deleteProducts,
 }) => {
   const [checkbox, setCheckbox] = React.useState(false);
+  const [showButtonOptions, setShowButtonsOptions] = React.useState(false);
 
   const toggleCheckbox = () => {
     setCheckbox(!checkbox);
@@ -50,36 +57,49 @@ const ProductItem = ({
           checkboxDeleteList(_id);
         }}
       >
-        {checkbox ? <span>&#9745;</span> : <span>&#9744;</span>}
+        {!!checkbox ? <CheckboxFull /> : <CheckboxEmpty />}
       </Checkbox>
       <Product>
-        <Item>{name}</Item>
-        <Item>{category}</Item>
-        <Item>{brand}</Item>
-        <Item>
-          <ButtonLink
-            to="add-product"
-            state={{
-              _id,
-              category,
-              brand,
-              name,
-              description,
-              price,
-              inventory,
-            }}
-          >
-            <Button color="#035956">Edit</Button>
-          </ButtonLink>
-          <Button
-            color="#fff"
-            colorFont="#b80f0a"
-            border="1px solid #b80f0a"
-            onClick={() => deleteProductApi(_id)}
-          >
-            Delete
-          </Button>
-        </Item>
+        <ItemContainer>
+          <Item>{name}</Item>
+        </ItemContainer>
+        <ItemContainer>
+          <Item>{category}</Item>
+        </ItemContainer>
+        <ItemContainer brand>
+          <Item>{brand}</Item>
+        </ItemContainer>
+        {showButtonOptions && (
+          <ButtonsOptions>
+            <ButtonLink
+              to="add-product"
+              state={{
+                _id,
+                category,
+                brand,
+                name,
+                description,
+                price,
+                inventory,
+              }}
+            >
+              <Button color="#035956">Edit</Button>
+            </ButtonLink>
+            <Button
+              color="#fff"
+              colorFont="#b80f0a"
+              border="1px solid #b80f0a"
+              onClick={() => deleteProductApi(_id)}
+            >
+              Delete
+            </Button>
+          </ButtonsOptions>
+        )}
+        <DotsContainer
+          onClick={() => setShowButtonsOptions(!showButtonOptions)}
+        >
+          <Dots />
+        </DotsContainer>
       </Product>
     </Container>
   );

@@ -17,6 +17,8 @@ import {
   Item,
   Pagination,
   Page,
+  Search,
+  SearchIcon,
 } from "./directory.styles";
 
 const ProductDirectory = ({
@@ -65,40 +67,44 @@ const ProductDirectory = ({
 
   return (
     <Container>
+      <Search>
+        <SearchIcon />
+        <FormInput
+          small
+          noBorder
+          placeholder="Buscar Produto"
+          name="name"
+          value={searchName}
+          onChange={handleChangeName}
+          fullscreen
+        />
+      </Search>
       <TitleContainer>
         <ItemContainer>
           <Item>Produto</Item>
-          <FormInput
-            name="name"
-            value={searchName}
-            onChange={handleChangeName}
-            small
-            placeholder="Buscar Produto..."
-          />
         </ItemContainer>
         <ItemContainer>
           <Item>Categoria</Item>
-          <FormInput
+          {/* <FormInput
             name="category"
             value={searchCategory}
             onChange={handleChangeCategory}
             small
             placeholder="Buscar Categoria..."
-          />
+          /> */}
         </ItemContainer>
-        <ItemContainer>
+        <ItemContainer brand>
           <Item>Marca</Item>
-          <FormInput
+          {/* <FormInput
             name="brand"
             value={searchBrand}
             onChange={handleChangeBrand}
             small
             placeholder="Buscar Marca..."
-          />
+          /> */}
         </ItemContainer>
-        <ItemContainer>
-          <Item>Opções</Item>
-        </ItemContainer>
+        <ItemContainer options />
+        {/* <Item>Opções</Item> */}
       </TitleContainer>
       {products?.map((productItem, index) => (
         <ProductItem

@@ -8,11 +8,18 @@ export const Container = styled.div`
   height: 80px;
   margin: 0.5rem 0rem 0.5rem 0rem;
   padding: 1.5rem;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    height: 110px;
+    justify-content: center;
+  }
 `;
 
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
 `;
 
 export const Title = styled.h2`

@@ -5,6 +5,7 @@ const subColor = "gray";
 export const Container = styled.div`
   position: relative;
   margin: 20px 0px;
+  width: 100%;
 
   .error-input {
     border: 1px solid rgb(242, 68, 37);
@@ -25,7 +26,7 @@ export const Label = styled.label`
 export const Option = styled.option``;
 
 export const Select = styled.select`
-  width: 350px;
+  width: ${({ fullscreen }) => (fullscreen ? "50vw" : "100%")};
   background: none;
   background-color: #fff;
   color: ${subColor};

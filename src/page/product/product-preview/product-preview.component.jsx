@@ -2,8 +2,13 @@ import React from "react";
 
 import Directory from "../../../components/product/directory/directory.component";
 import HeaderPreview from "../../../components/product/header/header-preview/header-preview.component";
+import Chart from "../../../components/chart/chart.component";
 
-import { Container } from "./product-preview.styles.js";
+import {
+  Container,
+  SubContainer,
+  ChartContainer,
+} from "./product-preview.styles.js";
 
 const ProductPreview = () => {
   const checkboxId = [];
@@ -24,7 +29,10 @@ const ProductPreview = () => {
   return (
     <Container>
       <HeaderPreview idList={checkboxId} />
-      <Directory checkboxDeleteList={checkboxDeleteList} />
+      <SubContainer>
+        <Directory checkboxDeleteList={checkboxDeleteList} />
+        <Chart />
+      </SubContainer>
     </Container>
   );
 };

@@ -1,11 +1,9 @@
 import React from "react";
-import { Nav, Title, NavMenu, NavMenuLinks, NavBtn } from "./header.styles";
-import { Button } from "../button/button.styles";
+import { Nav, Title, NavMenu } from "./header.styles";
 
-import { menuData } from "../../data/menuData";
 import Profile from "../profile/profile.component";
 
-function Navbar({ toggle }) {
+function Navbar() {
   return (
     <Nav>
       <Title to="/">Dashboard</Title>
