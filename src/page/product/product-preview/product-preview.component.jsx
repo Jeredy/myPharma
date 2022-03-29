@@ -7,7 +7,6 @@ import Chart from "../../../components/chart/chart.component";
 import {
   Container,
   SubContainer,
-  ChartContainer,
 } from "./product-preview.styles.js";
 
 const ProductPreview = () => {

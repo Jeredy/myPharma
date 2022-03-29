@@ -9,7 +9,7 @@ const HeaderAdd = ({ handleSubmit, update }) => {
 
   return (
     <Container>
-      <Title>{`${update ? "Atualizar Categoria" : "Novo Categoria"}`}</Title>
+      <Title>{`${update ? "Atualizar Categoria" : "Nova Categoria"}`}</Title>
       <ButtonContainer>
         <Button
           border="1px solid #282828"

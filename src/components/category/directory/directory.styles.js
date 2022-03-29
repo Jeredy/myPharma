@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoIosSearch } from "react-icons/io";
 
 export const Container = styled.div`
   display: flex;
@@ -6,16 +7,13 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
+  max-width: 950px;
   height: 100%;
-
-  @media (max-width: 480px) {
-    justify-content: center;
-  }
 `;
 
 export const TitleContainer = styled.div`
   display: flex;
-  height: 80px;
+  height: 60px;
   align-items: center;
   justify-content: center;
   width: 98%;
@@ -23,14 +21,10 @@ export const TitleContainer = styled.div`
   border-radius: 2px;
   -webkit-box-shadow: 0px 0px 15x 0px rgba(0, 0, 0, 0.17);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.17);
+  padding: 0rem 2rem;
 
   div:last-child {
-    align-items: flex-end;
-
-    p {
-      justify-content: flex-start;
-      margin-right: .5rem;
-    }
+    flex: 0%;
   }
 `;
 
@@ -41,7 +35,11 @@ export const ItemContainer = styled.div`
   justify-content: center;
   height: 80px;
   width: 100%;
-  flex: 33%;
+  flex: 40%;
+
+  div:last-child {
+    flex: 60%;
+  }
 `;
 
 export const Item = styled.p`
@@ -95,4 +93,31 @@ export const Page = styled.div`
     color: #111;
     transform: scale(1.1);
   }
+`;
+
+export const Search = styled.div`
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  width: 98%;
+  border-radius: 0.2rem;
+  margin-bottom: 0.5rem;
+  -webkit-box-shadow: 0px 0px 3x 0px rgba(0, 0, 0, 0.17);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.17);
+
+  @media screen and (max-width: 600px) {
+    cursor: pointer;
+
+    -webkit-box-shadow: 0px 0px 2x 0px rgba(0, 0, 0, 0.17);
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.17);
+  }
+`;
+
+export const SearchIcon = styled(IoIosSearch)`
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #bcbcbc;
+  margin-left: 0.5rem;
 `;

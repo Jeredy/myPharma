@@ -16,6 +16,8 @@ import {
   Item,
   Pagination,
   Page,
+  Search,
+  SearchIcon,
 } from "./directory.styles";
 
 const CategoryDirectory = ({
@@ -54,30 +56,41 @@ const CategoryDirectory = ({
 
   return (
     <Container>
+      <Search>
+        <SearchIcon />
+        <FormInput
+          small
+          noBorder
+          name="name"
+          value={searchName}
+          onChange={handleChangeName}
+          small
+          placeholder="Buscar Categoria..."
+          fullscreen
+        />
+      </Search>
       <TitleContainer>
         <ItemContainer>
           <Item>Categoria</Item>
-          <FormInput
+          {/* <FormInput
             name="name"
             value={searchName}
             onChange={handleChangeName}
             small
             placeholder="Buscar Categoria..."
-          />
+          /> */}
         </ItemContainer>
         <ItemContainer>
           <Item>Descrição</Item>
-          <FormInput
+          {/* <FormInput
             name="description"
             value={searchDescription}
             onChange={handleChangeDescripion}
             small
             placeholder="Buscar Descrição..."
-          />
+          /> */}
         </ItemContainer>
-        <ItemContainer>
-          <Item>Opções</Item>
-        </ItemContainer>
+        <ItemContainer />
       </TitleContainer>
       {categories?.map(
         (categoryItem, index) =>

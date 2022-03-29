@@ -56,15 +56,6 @@ const CategoryHeaderPreview = ({
     <Container>
       <TitleContainer>
         <Title>Categorias - Lista</Title>
-
-        <Button
-          border="1px solid #999"
-          color="#fff"
-          colorFont="#192841"
-          onClick={clearFilter}
-        >
-          Limpar Pesquisa
-        </Button>
       </TitleContainer>
       <ButtonContainer>
         <Button

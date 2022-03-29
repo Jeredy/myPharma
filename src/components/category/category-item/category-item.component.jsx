@@ -9,8 +9,14 @@ import {
   Container,
   Checkbox,
   Product,
+  ItemContainer,
   Item,
   ButtonLink,
+  CheckboxFull,
+  CheckboxEmpty,
+  ButtonsOptions,
+  DotsContainer,
+  Dots,
 } from "./category-item.styles.js";
 
 const CategoryItem = ({
@@ -20,6 +26,8 @@ const CategoryItem = ({
   toggleColor,
 }) => {
   const [checkbox, setCheckbox] = React.useState(false);
+  const [showButtonOptions, setShowButtonsOptions] = React.useState(false);
+
   const toggleCheckbox = () => {
     setCheckbox(!checkbox);
   };
@@ -51,31 +59,42 @@ const CategoryItem = ({
           checkboxDeleteList(_id);
         }}
       >
-        {checkbox ? <span>&#9745;</span> : <span>&#9744;</span>}
+        {!!checkbox ? <CheckboxFull /> : <CheckboxEmpty />}
       </Checkbox>
       <Product>
-        <Item>{name}</Item>
-        <Item numberOfLines={2}>{description}</Item>
-        <Item>
-          <ButtonLink
-            to="add-category"
-            state={{
-              _id,
-              name,
-              description,
-            }}
-          >
-            <Button color="#035956">Edit</Button>
-          </ButtonLink>
-          <Button
-            color="#fff"
-            colorFont="#b80f0a"
-            border="1px solid #b80f0a"
-            onClick={() => deleteCategoryApi(_id)}
-          >
-            Delete
-          </Button>
-        </Item>
+        <ItemContainer>
+          <Item>{name}</Item>
+        </ItemContainer>
+        <ItemContainer>
+          <Item>{description}</Item>
+        </ItemContainer>
+        {showButtonOptions && (
+          <ButtonsOptions>
+            <ButtonLink
+              to="add-category"
+              state={{
+                _id,
+                name,
+                description,
+              }}
+            >
+              <Button color="#035956">Edit</Button>
+            </ButtonLink>
+            <Button
+              color="#fff"
+              colorFont="#b80f0a"
+              border="1px solid #b80f0a"
+              onClick={() => deleteCategoryApi(_id)}
+            >
+              Delete
+            </Button>
+          </ButtonsOptions>
+        )}
+        <DotsContainer
+          onClick={() => setShowButtonsOptions(!showButtonOptions)}
+        >
+          <Dots />
+        </DotsContainer>
       </Product>
     </Container>
   );

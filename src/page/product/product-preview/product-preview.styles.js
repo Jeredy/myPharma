@@ -19,19 +19,3 @@ export const SubContainer = styled.div`
     flex-direction: column-reverse;
   }
 `;
-
-export const ChartContainer = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  max-width: 230px;
-  max-height: 400px;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 0px 15x 0px rgba(0, 0, 0, 0.17);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.17);
-  margin-bottom: auto;
-`;
