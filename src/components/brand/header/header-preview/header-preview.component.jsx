@@ -12,7 +12,6 @@ import {
 
 import {
   Container,
-  TitleContainer,
   Title,
   ButtonContainer,
 } from "./header-preview.styles.js";
@@ -51,18 +50,7 @@ const HeaderPreview = ({
 
   return (
     <Container>
-      <TitleContainer>
-        <Title>Marcas - Lista</Title>
-
-        <Button
-          border="1px solid #999"
-          color="#fff"
-          colorFont="#192841"
-          onClick={clearFilter}
-        >
-          Limpar Pesquisa
-        </Button>
-      </TitleContainer>
+      <Title>Marcas - Lista</Title>
       <ButtonContainer>
         <Button
           border="1px solid #192841"

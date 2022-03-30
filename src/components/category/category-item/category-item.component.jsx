@@ -73,7 +73,7 @@ const CategoryItem = ({
             <ButtonLink
               to="add-category"
               state={{
-                _id,
+                _id, 
                 name,
                 description,
               }}

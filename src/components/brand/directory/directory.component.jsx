@@ -15,6 +15,8 @@ import {
   Item,
   Pagination,
   Page,
+  Search,
+  SearchIcon,
 } from "./directory.styles";
 
 const BrandDirectory = ({
@@ -43,19 +45,22 @@ const BrandDirectory = ({
 
   return (
     <Container>
+      <Search>
+        <SearchIcon />
+        <FormInput
+          small
+          noBorder
+          name="name"
+          value={searchName}
+          onChange={handleChangeName}
+          small
+          placeholder="Buscar Marca..."
+          fullscreen
+        />
+      </Search>
       <TitleContainer>
         <ItemContainer>
           <Item>Marca</Item>
-          <FormInput
-            name="name"
-            value={searchName}
-            onChange={handleChangeName}
-            small
-            placeholder="Buscar Marca..."
-          />
-        </ItemContainer>
-        <ItemContainer>
-          <Item>Opções</Item>
         </ItemContainer>
       </TitleContainer>
       {brands?.map(

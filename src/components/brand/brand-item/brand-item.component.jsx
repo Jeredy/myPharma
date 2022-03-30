@@ -10,8 +10,14 @@ import {
   Container,
   Checkbox,
   Product,
+  ItemContainer,
   Item,
   ButtonLink,
+  CheckboxFull,
+  CheckboxEmpty,
+  ButtonsOptions,
+  DotsContainer,
+  Dots,
 } from "./brand-item.styles.js";
 
 const BrandItem = ({
@@ -21,6 +27,7 @@ const BrandItem = ({
   toggleColor,
 }) => {
   const [checkbox, setCheckbox] = React.useState(false);
+  const [showButtonOptions, setShowButtonsOptions] = React.useState(false);
 
   const toggleCheckbox = () => {
     setCheckbox(!checkbox);
@@ -53,29 +60,38 @@ const BrandItem = ({
           checkboxDeleteList(_id);
         }}
       >
-        {checkbox ? <span>&#9745;</span> : <span>&#9744;</span>}
+        {!!checkbox ? <CheckboxFull /> : <CheckboxEmpty />}
       </Checkbox>
       <Product>
-        <Item>{name}</Item>
-        <Item>
-          <ButtonLink
-            to="add-brand"
-            state={{
-              _id,
-              name,
-            }}
-          >
-            <Button color="#035956">Edit</Button>
-          </ButtonLink>
-          <Button
-            color="#fff"
-            colorFont="#b80f0a"
-            border="1px solid #b80f0a"
-            onClick={() => deleteBrandApi(_id)}
-          >
-            Delete
-          </Button>
-        </Item>
+        <ItemContainer>
+          <Item>{name}</Item>
+        </ItemContainer>
+        {showButtonOptions && (
+          <ButtonsOptions>
+            <ButtonLink
+              to="add-category"
+              state={{
+                _id,
+                name,
+              }}
+            >
+              <Button color="#035956">Edit</Button>
+            </ButtonLink>
+            <Button
+              color="#fff"
+              colorFont="#b80f0a"
+              border="1px solid #b80f0a"
+              onClick={() => deleteBrandApi(_id)}
+            >
+              Delete
+            </Button>
+          </ButtonsOptions>
+        )}
+        <DotsContainer
+          onClick={() => setShowButtonsOptions(!showButtonOptions)}
+        >
+          <Dots />
+        </DotsContainer>
       </Product>
     </Container>
   );
